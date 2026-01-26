@@ -82,7 +82,7 @@
       </div>
     </section>
 
-    <!-- ✅ NEW: BUSINESS section (white area under hero like inspo) -->
+    <!-- BUSINESS section -->
     <section class="home-business" aria-label="Business overview">
       <div class="container">
         <h2 class="home-business__title">BUSINESS</h2>
@@ -123,6 +123,119 @@
             </div>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- ✅ NEW: PROJECT (products) section with “book effect” slider -->
+    <section class="home-projects" aria-label="Projects">
+      <div class="container">
+        <div class="home-projects__head">
+          <h2 class="home-projects__title">PROJECT</h2>
+          <p class="home-projects__desc">DOHWA continues to tackle global challenges.</p>
+        </div>
+
+        <div class="proj-slider" data-total="8">
+          <div class="proj-stage">
+            <div class="proj-track">
+
+              <!-- 1 -->
+              <article class="proj-card is-active">
+                <div class="proj-media">
+                  <!-- ✅ put these images in assets/images/ exactly like the names below -->
+                  <img src="assets/images/project-1.jpg" alt="Project 1">
+                </div>
+                <p class="proj-text">
+                  Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam
+                </p>
+              </article>
+
+              <!-- 2 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-2.jpg" alt="Project 2">
+                </div>
+                <p class="proj-text">
+                  Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project
+                </p>
+              </article>
+
+              <!-- 3 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-3.jpg" alt="Project 3">
+                </div>
+                <p class="proj-text">
+                  EPC construction for Sinji wind farm development project
+                </p>
+              </article>
+
+              <!-- 4 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-4.jpg" alt="Project 4">
+                </div>
+                <p class="proj-text">
+                  Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan
+                </p>
+              </article>
+
+              <!-- 5 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-5.jpg" alt="Project 5">
+                </div>
+                <p class="proj-text">
+                  On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project
+                </p>
+              </article>
+
+              <!-- 6 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-6.jpg" alt="Project 6">
+                </div>
+                <p class="proj-text">
+                  Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis
+                </p>
+              </article>
+
+              <!-- 7 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-7.jpg" alt="Project 7">
+                </div>
+                <p class="proj-text">
+                  Preliminary and detailed design for structural improvement of Nodeul-ro Road
+                </p>
+              </article>
+
+              <!-- 8 -->
+              <article class="proj-card">
+                <div class="proj-media">
+                  <img src="assets/images/project-8.jpg" alt="Project 8">
+                </div>
+                <p class="proj-text">
+                  Feasibility Study and Master plan for Saemangeum new airport construction project
+                </p>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Controls like inspo: arrows + 1/8 -->
+          <div class="proj-controls" aria-label="Project slider controls">
+            <button class="proj-arrow proj-arrow--left" type="button" aria-label="Previous">‹</button>
+
+            <div class="proj-counter" aria-label="Slide counter">
+              <span id="projIndex">1</span>
+              <span class="proj-slash">/</span>
+              <span id="projTotal">8</span>
+            </div>
+
+            <button class="proj-arrow proj-arrow--right" type="button" aria-label="Next">›</button>
+          </div>
+        </div>
+
       </div>
     </section>
 
