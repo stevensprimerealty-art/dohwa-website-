@@ -4,16 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // ===== HOME PAGE: fade-in + hero slider + hamburger overlay + home sliders =====
-  // (Only runs if .hero-slider exists)
+  // ===== HOME PAGE: fade-in + hero slider + hamburger overlay =====
   const heroSlider = document.querySelector(".hero-slider");
   if (heroSlider) {
     // Fade-in on load
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
-    // ------------------------------
-    // Hamburger overlay menu (home)
-    // ------------------------------
+    // Hamburger overlay menu (home page)
     const burger = document.querySelector(".hamburger");
     const overlay = document.querySelector(".overlay-nav");
 
@@ -31,13 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.setAttribute("aria-hidden", String(!isOpen));
       });
 
-      // Close overlay when a link is clicked
       overlay.addEventListener("click", (e) => {
         const target = e.target;
         if (target && target.tagName === "A") closeOverlay();
       });
 
-      // Close overlay when tapping outside the menu
       document.addEventListener("click", (e) => {
         const target = e.target;
         const clickedInsideOverlay = overlay.contains(target);
@@ -46,15 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isOpen && !clickedInsideOverlay && !clickedBurger) closeOverlay();
       });
 
-      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeOverlay();
       });
     }
 
-    // ------------------------------
-    // HERO slider (3 slides)
-    // ------------------------------
+    // ===== HERO slider (3 slides, fade, arrow controls) =====
     const slides = Array.from(document.querySelectorAll(".hero-slide"));
     const prevBtn = document.querySelector(".hero-arrow--left");
     const nextBtn = document.querySelector(".hero-arrow--right");
@@ -69,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
         slides.forEach((s) => s.classList.remove("is-active"));
         slides[i].classList.add("is-active");
 
-        // Re-trigger content fade per slide smoothly
         const content = slides[i].querySelector(".hero-content");
         if (content) {
           content.style.opacity = "0";
@@ -92,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (prevBtn) prevBtn.addEventListener("click", prev);
       if (nextBtn) nextBtn.addEventListener("click", next);
 
-      // Keyboard slide controls (only when overlay menu is not open)
       document.addEventListener("keydown", (e) => {
         const overlayOpen = overlay && overlay.classList.contains("is-open");
         if (overlayOpen) return;
@@ -100,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "ArrowRight") next();
       });
 
-      // Auto-advance
       const AUTO = true;
       const AUTO_MS = 6500;
       let timer = null;
@@ -118,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       startAuto();
 
-      // Pause/restart auto on manual click
       [prevBtn, nextBtn].forEach((btn) => {
         if (!btn) return;
         btn.addEventListener("click", () => {
@@ -127,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      // Pause auto when tab is hidden, resume when visible
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) stopAuto();
         else startAuto();
@@ -135,13 +122,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // PROJECT slider (8 slides) “book effect” — FIXED (wrap prev/next)
+    // ✅ PROJECT slider (8 slides) “book effect”
     // ============================================================
     const projSlider = document.querySelector(".proj-slider");
     if (projSlider) {
-      const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
-      const pPrev = projSlider.querySelector(".proj-arrow--left");
-      const pNext = projSlider.querySelector(".proj-arrow--right");
+      const cards = Array.from(document.querySelectorAll(".proj-card"));
+      const pPrev = document.querySelector(".proj-arrow--left");
+      const pNext = document.querySelector(".proj-arrow--right");
       const stage = projSlider.querySelector(".proj-stage");
 
       const idxEl = document.getElementById("projIndex");
@@ -149,132 +136,123 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const total = cards.length;
       if (totalEl) totalEl.textContent = String(total);
-      if (!total) {
-        // nothing to run
-      } else {
-        let current = cards.findIndex((c) => c.classList.contains("is-active"));
-        if (current < 0) current = 0;
+      if (!total) return;
 
-        const render = () => {
-          const prevI = (current - 1 + total) % total;
-          const nextI = (current + 1) % total;
+      let current = cards.findIndex((c) => c.classList.contains("is-active"));
+      if (current < 0) current = 0;
 
-          cards.forEach((c, i) => {
-            c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+      const render = () => {
+        const prevI = (current - 1 + total) % total;
+        const nextI = (current + 1) % total;
 
-            if (i === current) c.classList.add("is-active");
-            else if (i === prevI) c.classList.add("is-prev");
-            else if (i === nextI) c.classList.add("is-next");
-            else c.classList.add("is-hidden");
-          });
+        cards.forEach((c, i) => {
+          c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+          if (i === current) c.classList.add("is-active");
+          else if (i === prevI) c.classList.add("is-prev");
+          else if (i === nextI) c.classList.add("is-next");
+          else c.classList.add("is-hidden");
+        });
 
-          if (idxEl) idxEl.textContent = String(current + 1);
-        };
+        if (idxEl) idxEl.textContent = String(current + 1);
+      };
 
-        const goPrev = () => {
-          current = (current - 1 + total) % total;
-          render();
-        };
-
-        const goNext = () => {
-          current = (current + 1) % total;
-          render();
-        };
-
-        if (pPrev) pPrev.addEventListener("click", goPrev);
-        if (pNext) pNext.addEventListener("click", goNext);
-
-        // Swipe on mobile
-        let startX = 0;
-        if (stage) {
-          stage.addEventListener(
-            "touchstart",
-            (e) => {
-              startX = e.touches[0].clientX;
-            },
-            { passive: true }
-          );
-
-          stage.addEventListener(
-            "touchend",
-            (e) => {
-              const endX = e.changedTouches[0].clientX;
-              const diff = endX - startX;
-              if (Math.abs(diff) > 50) {
-                if (diff > 0) goPrev();
-                else goNext();
-              }
-            },
-            { passive: true }
-          );
-        }
-
+      const goPrev = () => {
+        current = (current - 1 + total) % total;
         render();
+      };
+      const goNext = () => {
+        current = (current + 1) % total;
+        render();
+      };
+
+      if (pPrev) pPrev.addEventListener("click", goPrev);
+      if (pNext) pNext.addEventListener("click", goNext);
+
+      let startX = 0;
+      if (stage) {
+        stage.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+        stage.addEventListener(
+          "touchend",
+          (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
+          },
+          { passive: true }
+        );
       }
+
+      render();
     }
 
     // ============================================================
-    // NEWS slider (2 pages, each page has 2 cards)
-    // - page 1: 2025 + 2024
-    // - page 2: 2023 + 2022
+    // ✅ NEWS slider (2 pages): 2025/2024 then 2023/2022
+    // Works with your buttons: .news-prev / .news-next
     // ============================================================
     const newsSlider = document.querySelector(".news-slider");
     if (newsSlider) {
-      const pages = Array.from(newsSlider.querySelectorAll(".news-page"));
-      const nPrev = newsSlider.querySelector(".news-arrow--left");
-      const nNext = newsSlider.querySelector(".news-arrow--right");
       const track = newsSlider.querySelector(".news-track");
+      const pages = Array.from(newsSlider.querySelectorAll(".news-page"));
+      const nPrev = newsSlider.querySelector(".news-prev");
+      const nNext = newsSlider.querySelector(".news-next");
 
-      const total = pages.length;
-      if (total) {
-        let current = pages.findIndex((p) => p.classList.contains("is-active"));
-        if (current < 0) current = 0;
+      if (track && pages.length) {
+        let nIndex = pages.findIndex((p) => p.classList.contains("is-active"));
+        if (nIndex < 0) nIndex = 0;
 
-        const render = () => {
-          pages.forEach((p, i) => {
-            p.classList.toggle("is-active", i === current);
-          });
+        // Ensure track is horizontal
+        track.style.display = "flex";
+        track.style.transition = "transform 450ms ease";
+        track.style.willChange = "transform";
+
+        // Each page takes full width
+        pages.forEach((p) => {
+          p.style.flex = "0 0 100%";
+        });
+
+        const renderNews = () => {
+          pages.forEach((p) => p.classList.remove("is-active"));
+          pages[nIndex].classList.add("is-active");
+          track.style.transform = `translateX(-${nIndex * 100}%)`;
         };
 
-        const goPrev = () => {
-          current = (current - 1 + total) % total;
-          render();
+        const newsPrev = () => {
+          nIndex = (nIndex - 1 + pages.length) % pages.length;
+          renderNews();
         };
 
-        const goNext = () => {
-          current = (current + 1) % total;
-          render();
+        const newsNext = () => {
+          nIndex = (nIndex + 1) % pages.length;
+          renderNews();
         };
 
-        if (nPrev) nPrev.addEventListener("click", goPrev);
-        if (nNext) nNext.addEventListener("click", goNext);
+        if (nPrev) nPrev.addEventListener("click", newsPrev);
+        if (nNext) nNext.addEventListener("click", newsNext);
 
-        // Swipe (track)
+        // Swipe on mobile
         let startX = 0;
-        if (track) {
-          track.addEventListener(
-            "touchstart",
-            (e) => {
-              startX = e.touches[0].clientX;
-            },
-            { passive: true }
-          );
+        newsSlider.addEventListener(
+          "touchstart",
+          (e) => (startX = e.touches[0].clientX),
+          { passive: true }
+        );
+        newsSlider.addEventListener(
+          "touchend",
+          (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (Math.abs(diff) > 50) diff > 0 ? newsPrev() : newsNext();
+          },
+          { passive: true }
+        );
 
-          track.addEventListener(
-            "touchend",
-            (e) => {
-              const endX = e.changedTouches[0].clientX;
-              const diff = endX - startX;
-              if (Math.abs(diff) > 50) {
-                if (diff > 0) goPrev();
-                else goNext();
-              }
-            },
-            { passive: true }
-          );
-        }
-
-        render();
+        renderNews();
       }
     }
 
@@ -303,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.style.zIndex = "100";
     });
 
-    // Close if user clicks outside
     document.addEventListener("click", (e) => {
       const target = e.target;
       const clickedToggle = toggle.contains(target);
