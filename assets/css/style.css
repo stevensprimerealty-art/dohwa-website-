@@ -123,9 +123,33 @@ body{
 .form-grid .full{grid-column:1 / -1}
 
 /* ====== INSPO-STYLE HOME HERO (FULLSCREEN + FADE SLIDES) ====== */
+
+/* ✅ IMPORTANT FIX:
+   Do NOT make the whole page black.
+   Make ONLY the hero area black via .hero-slider.
+*/
 body.home{
+  background:#fff;
+  color:var(--text);
+}
+
+/* ✅ Hero area stays dark like inspo */
+body.home .hero-slider{
   background:#000;
   color:#fff;
+}
+
+/* ✅ Anything after hero becomes white */
+body.home main{
+  background:#fff;
+  color:var(--text);
+}
+body.home .site-footer{
+  background:#fff;
+  color:var(--text);
+}
+body.home .site-footer .muted{
+  color:var(--muted);
 }
 
 /* Hero header that floats over the hero */
