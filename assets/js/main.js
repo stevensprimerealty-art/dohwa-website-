@@ -13,6 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fade-in on load
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
+   // Reveal on scroll (CAREER + anything with .reveal)
+const revealEls = Array.from(document.querySelectorAll(".reveal"));
+if (revealEls.length) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  revealEls.forEach((el) => io.observe(el));
+}
+    
     // -------------------------
     // Hamburger overlay menu
     // -------------------------
