@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (index < 0) index = 0;
 
       const show = (i) => {
-        // Guard
         if (i < 0 || i >= slides.length) return;
 
         slides.forEach((s) => s.classList.remove("is-active"));
@@ -140,6 +139,79 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.hidden) stopAuto();
         else startAuto();
       });
+    }
+
+    // ============================================================
+    // ✅ NEW: PRODUCTS/PROJECT slider (8 slides) “book effect”
+    // ============================================================
+    const projSlider = document.querySelector(".proj-slider");
+    if (projSlider) {
+      const cards = Array.from(document.querySelectorAll(".proj-card"));
+      const pPrev = document.querySelector(".proj-arrow--left");
+      const pNext = document.querySelector(".proj-arrow--right");
+
+      const idxEl = document.getElementById("projIndex");
+      const totalEl = document.getElementById("projTotal");
+
+      if (totalEl) totalEl.textContent = String(cards.length);
+
+      let current = cards.findIndex((c) => c.classList.contains("is-active"));
+      if (current < 0) current = 0;
+
+      const render = () => {
+        cards.forEach((c, i) => {
+          c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+
+          if (i === current) c.classList.add("is-active");
+          else if (i === current - 1) c.classList.add("is-prev");
+          else if (i === current + 1) c.classList.add("is-next");
+          else c.classList.add("is-hidden");
+        });
+
+        if (idxEl) idxEl.textContent = String(current + 1);
+      };
+
+      const goPrev = () => {
+        current = (current - 1 + cards.length) % cards.length;
+        render();
+      };
+
+      const goNext = () => {
+        current = (current + 1) % cards.length;
+        render();
+      };
+
+      if (pPrev) pPrev.addEventListener("click", goPrev);
+      if (pNext) pNext.addEventListener("click", goNext);
+
+      // ✅ Swipe on mobile
+      const stage = projSlider.querySelector(".proj-stage");
+      let startX = 0;
+
+      if (stage) {
+        stage.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+
+        stage.addEventListener(
+          "touchend",
+          (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (Math.abs(diff) > 50) {
+              if (diff > 0) goPrev();
+              else goNext();
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      render();
     }
 
     // Home page handled—do not run standard nav toggle below
