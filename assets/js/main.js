@@ -4,13 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // ===== HOME PAGE: fade-in + hero slider + hamburger overlay + sliders =====
+  // ============================================================
+  // HOME PAGE: hero + overlay + sliders + (optional) scroll fade
+  // Only runs if .hero-slider exists
+  // ============================================================
   const heroSlider = document.querySelector(".hero-slider");
   if (heroSlider) {
     // Fade-in on load
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
-    // Hamburger overlay menu (home page)
+    // -------------------------
+    // Hamburger overlay menu
+    // -------------------------
     const burger = document.querySelector(".hamburger");
     const overlay = document.querySelector(".overlay-nav");
 
@@ -49,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ===== HERO slider (3 slides) =====
+    // -------------------------
+    // HERO slider (3 slides)
+    // -------------------------
     const slides = Array.from(document.querySelectorAll(".hero-slide"));
     const prevBtn = document.querySelector(".hero-arrow--left");
     const nextBtn = document.querySelector(".hero-arrow--right");
@@ -127,12 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ===== PROJECT slider (8 slides) “book effect” =====
+    // -------------------------
+    // PROJECT slider (8 slides) “book effect”
+    // -------------------------
     const projSlider = document.querySelector(".proj-slider");
     if (projSlider) {
-      const cards = Array.from(document.querySelectorAll(".proj-card"));
-      const pPrev = document.querySelector(".proj-arrow--left");
-      const pNext = document.querySelector(".proj-arrow--right");
+      const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
+      const pPrev = projSlider.querySelector(".proj-arrow--left");
+      const pNext = projSlider.querySelector(".proj-arrow--right");
       const stage = projSlider.querySelector(".proj-stage");
 
       const idxEl = document.getElementById("projIndex");
@@ -140,61 +149,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const total = cards.length;
       if (totalEl) totalEl.textContent = String(total);
+      if (!total) {
+        // nothing to run
+      } else {
+        let current = cards.findIndex((c) => c.classList.contains("is-active"));
+        if (current < 0) current = 0;
 
-      let current = cards.findIndex((c) => c.classList.contains("is-active"));
-      if (current < 0) current = 0;
+        const render = () => {
+          const prevI = (current - 1 + total) % total;
+          const nextI = (current + 1) % total;
 
-      const render = () => {
-        const prevI = (current - 1 + total) % total;
-        const nextI = (current + 1) % total;
+          cards.forEach((c, i) => {
+            c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+            if (i === current) c.classList.add("is-active");
+            else if (i === prevI) c.classList.add("is-prev");
+            else if (i === nextI) c.classList.add("is-next");
+            else c.classList.add("is-hidden");
+          });
 
-        cards.forEach((c, i) => {
-          c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
-          if (i === current) c.classList.add("is-active");
-          else if (i === prevI) c.classList.add("is-prev");
-          else if (i === nextI) c.classList.add("is-next");
-          else c.classList.add("is-hidden");
-        });
+          if (idxEl) idxEl.textContent = String(current + 1);
+        };
 
-        if (idxEl) idxEl.textContent = String(current + 1);
-      };
+        const goPrev = () => {
+          current = (current - 1 + total) % total;
+          render();
+        };
 
-      const goPrev = () => {
-        current = (current - 1 + total) % total;
+        const goNext = () => {
+          current = (current + 1) % total;
+          render();
+        };
+
+        if (pPrev) pPrev.addEventListener("click", goPrev);
+        if (pNext) pNext.addEventListener("click", goNext);
+
+        // Swipe on mobile
+        let startX = 0;
+        if (stage) {
+          stage.addEventListener(
+            "touchstart",
+            (e) => (startX = e.touches[0].clientX),
+            { passive: true }
+          );
+          stage.addEventListener(
+            "touchend",
+            (e) => {
+              const endX = e.changedTouches[0].clientX;
+              const diff = endX - startX;
+              if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
+            },
+            { passive: true }
+          );
+        }
+
         render();
-      };
-
-      const goNext = () => {
-        current = (current + 1) % total;
-        render();
-      };
-
-      if (pPrev) pPrev.addEventListener("click", goPrev);
-      if (pNext) pNext.addEventListener("click", goNext);
-
-      // Swipe on mobile
-      let startX = 0;
-      if (stage) {
-        stage.addEventListener(
-          "touchstart",
-          (e) => (startX = e.touches[0].clientX),
-          { passive: true }
-        );
-        stage.addEventListener(
-          "touchend",
-          (e) => {
-            const endX = e.changedTouches[0].clientX;
-            const diff = endX - startX;
-            if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
-          },
-          { passive: true }
-        );
       }
-
-      render();
     }
 
-    // ===== NEWS slider (2 pages: 2025/2024 then 2023/2022) ✅ FIXED =====
+    // -------------------------
+    // NEWS slider (2 pages) — sliding track
+    // -------------------------
     const newsSlider = document.querySelector(".news-slider");
     if (newsSlider) {
       const track = newsSlider.querySelector(".news-track");
@@ -203,12 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const nNext = newsSlider.querySelector(".news-next");
 
       if (track && pages.length) {
-        let current = pages.findIndex((p) => p.classList.contains("is-active"));
-        if (current < 0) current = 0;
+        let current = 0;
 
         const render = () => {
+          // only for your CSS hooks (optional)
           pages.forEach((p, i) => p.classList.toggle("is-active", i === current));
-          // slide track
+          // actual slide
           track.style.transform = `translateX(-${current * 100}%)`;
         };
 
@@ -246,11 +260,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // -------------------------
+    // Fade-in on scroll (for CAREER + any section)
+    // Add class="reveal" to elements you want to animate
+    // -------------------------
+    const reveals = Array.from(document.querySelectorAll(".reveal"));
+    if (reveals.length && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { root: null, threshold: 0.15 }
+      );
+
+      reveals.forEach((el) => io.observe(el));
+    }
+
     // Home page handled—do not run standard nav toggle below
     return;
   }
 
-  // ===== STANDARD PAGES: mobile menu toggle for .site-header =====
+  // ============================================================
+  // STANDARD PAGES: mobile menu toggle for .site-header
+  // ============================================================
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
 
@@ -278,5 +315,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const clickedNav = nav.contains(target);
       if (!clickedToggle && !clickedNav) nav.style.display = "none";
     });
+  }
+
+  // Optional: fade-in on scroll for standard pages too
+  const reveals = Array.from(document.querySelectorAll(".reveal"));
+  if (reveals.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, threshold: 0.15 }
+    );
+    reveals.forEach((el) => io.observe(el));
   }
 });
