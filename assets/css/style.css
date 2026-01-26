@@ -456,7 +456,7 @@ body.is-loaded .hamburger span{
 }
 .biz-list li{ margin:6px 0; }
 
-/* ====== PROJECT (products) slider (home) ====== */
+/* ====== PROJECT slider (home) ====== */
 .home-projects{
   padding:66px 0 74px;
   background:#fff;
@@ -475,9 +475,10 @@ body.is-loaded .hamburger span{
 }
 
 /* Stage */
+.proj-slider{ position:relative; }
 .proj-stage{
   position:relative;
-  height: 520px;
+  height: 560px;          /* ✅ more space so caption never touches controls */
   overflow:hidden;
   border-radius:20px;
 }
@@ -496,10 +497,15 @@ body.is-loaded .hamburger span{
   transform: translateX(-50%);
   opacity:0;
   pointer-events:none;
+
+  /* ✅ critical: stop overlaps */
+  visibility:hidden;
+
   transition:
     transform 700ms ease,
     opacity 500ms ease,
-    filter 700ms ease;
+    filter 700ms ease,
+    visibility 0ms linear 700ms;
 }
 .proj-media{
   background:#fff;
@@ -509,11 +515,14 @@ body.is-loaded .hamburger span{
 }
 .proj-media img{
   width:100%;
-  height:360px;
+  height:380px;
   object-fit:cover;
   display:block;
 }
+
+/* ✅ Caption: only active should show (prevents scribble) */
 .proj-text{
+  display:none;
   margin:14px 4px 0;
   font-size:22px;
   line-height:1.35;
@@ -527,29 +536,42 @@ body.is-loaded .hamburger span{
   transform: translateX(-50%) translateZ(0) scale(1);
   filter:none;
   z-index:3;
+
+  visibility:visible;
+  transition-delay:0ms;
 }
+.proj-card.is-active .proj-text{ display:block; }
+
 .proj-card.is-prev{
   opacity:0.55;
   transform: translateX(-105%) rotateY(12deg) scale(0.92);
   filter: blur(0.2px);
   z-index:2;
+
+  visibility:visible;
+  transition-delay:0ms;
 }
 .proj-card.is-next{
   opacity:0.55;
   transform: translateX(5%) rotateY(-12deg) scale(0.92);
   filter: blur(0.2px);
   z-index:2;
+
+  visibility:visible;
+  transition-delay:0ms;
 }
+
 /* hide far slides */
 .proj-card.is-hidden{
   opacity:0;
   transform: translateX(-50%) scale(0.85);
   z-index:1;
+  visibility:hidden;
 }
 
 /* Controls */
 .proj-controls{
-  margin-top:16px;
+  margin-top:18px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -590,7 +612,7 @@ body.is-loaded .hamburger span{
 
   .biz-grid{grid-template-columns:1fr}
 
-  .proj-stage{ height: 520px; }
+  .proj-stage{ height: 560px; }
   .proj-text{ font-size:18px; }
 }
 @media (max-width: 480px){
@@ -600,5 +622,5 @@ body.is-loaded .hamburger span{
 
   /* on very small screens, keep only center visible */
   .proj-card.is-prev,
-  .proj-card.is-next{ opacity:0; }
+  .proj-card.is-next{ opacity:0; visibility:hidden; }
 }
