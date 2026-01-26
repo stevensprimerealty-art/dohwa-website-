@@ -22,13 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.setAttribute("aria-hidden", "true");
     };
 
-    const openOverlay = () => {
-      if (!burger || !overlay) return;
-      overlay.classList.add("is-open");
-      burger.setAttribute("aria-expanded", "true");
-      overlay.setAttribute("aria-hidden", "false");
-    };
-
     if (burger && overlay) {
       burger.addEventListener("click", () => {
         const isOpen = overlay.classList.toggle("is-open");
@@ -42,25 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (target && target.tagName === "A") closeOverlay();
       });
 
-      // ✅ Close overlay when tapping outside the menu
+      // Close overlay when tapping outside the menu
       document.addEventListener("click", (e) => {
         const target = e.target;
         const clickedInsideOverlay = overlay.contains(target);
         const clickedBurger = burger.contains(target);
         const isOpen = overlay.classList.contains("is-open");
-
-        if (isOpen && !clickedInsideOverlay && !clickedBurger) {
-          closeOverlay();
-        }
+        if (isOpen && !clickedInsideOverlay && !clickedBurger) closeOverlay();
       });
 
-      // ✅ Close on ESC
+      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeOverlay();
       });
     }
 
-    // Hero slider (3 slides, fade, arrow controls)
+    // ===== HERO slider (3 slides, fade, arrow controls) =====
     const slides = Array.from(document.querySelectorAll(".hero-slide"));
     const prevBtn = document.querySelector(".hero-arrow--left");
     const nextBtn = document.querySelector(".hero-arrow--right");
@@ -98,16 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (prevBtn) prevBtn.addEventListener("click", prev);
       if (nextBtn) nextBtn.addEventListener("click", next);
 
-      // ✅ Keyboard slide controls (only when overlay menu is not open)
+      // Keyboard slide controls (only when overlay menu is not open)
       document.addEventListener("keydown", (e) => {
         const overlayOpen = overlay && overlay.classList.contains("is-open");
         if (overlayOpen) return;
-
         if (e.key === "ArrowLeft") prev();
         if (e.key === "ArrowRight") next();
       });
 
-      // Optional auto-advance
+      // Auto-advance
       const AUTO = true;
       const AUTO_MS = 6500;
       let timer = null;
@@ -134,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      // ✅ Pause auto when tab is hidden, resume when visible
+      // Pause auto when tab is hidden, resume when visible
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) stopAuto();
         else startAuto();
@@ -142,29 +131,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // ✅ NEW: PRODUCTS/PROJECT slider (8 slides) “book effect”
+    // ✅ PROJECT slider (8 slides) “book effect” — FIXED
     // ============================================================
     const projSlider = document.querySelector(".proj-slider");
     if (projSlider) {
       const cards = Array.from(document.querySelectorAll(".proj-card"));
       const pPrev = document.querySelector(".proj-arrow--left");
       const pNext = document.querySelector(".proj-arrow--right");
+      const stage = projSlider.querySelector(".proj-stage");
 
       const idxEl = document.getElementById("projIndex");
       const totalEl = document.getElementById("projTotal");
 
-      if (totalEl) totalEl.textContent = String(cards.length);
+      const total = cards.length;
+      if (totalEl) totalEl.textContent = String(total);
+      if (!total) {
+        // nothing to run
+        return;
+      }
 
       let current = cards.findIndex((c) => c.classList.contains("is-active"));
       if (current < 0) current = 0;
 
       const render = () => {
+        const prevI = (current - 1 + total) % total;
+        const nextI = (current + 1) % total;
+
         cards.forEach((c, i) => {
           c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
 
           if (i === current) c.classList.add("is-active");
-          else if (i === current - 1) c.classList.add("is-prev");
-          else if (i === current + 1) c.classList.add("is-next");
+          else if (i === prevI) c.classList.add("is-prev");
+          else if (i === nextI) c.classList.add("is-next");
           else c.classList.add("is-hidden");
         });
 
@@ -172,22 +170,20 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       const goPrev = () => {
-        current = (current - 1 + cards.length) % cards.length;
+        current = (current - 1 + total) % total;
         render();
       };
 
       const goNext = () => {
-        current = (current + 1) % cards.length;
+        current = (current + 1) % total;
         render();
       };
 
       if (pPrev) pPrev.addEventListener("click", goPrev);
       if (pNext) pNext.addEventListener("click", goNext);
 
-      // ✅ Swipe on mobile
-      const stage = projSlider.querySelector(".proj-stage");
+      // Swipe on mobile
       let startX = 0;
-
       if (stage) {
         stage.addEventListener(
           "touchstart",
@@ -239,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.style.zIndex = "100";
     });
 
-    // Close if user clicks outside (nice-to-have)
+    // Close if user clicks outside
     document.addEventListener("click", (e) => {
       const target = e.target;
       const clickedToggle = toggle.contains(target);
