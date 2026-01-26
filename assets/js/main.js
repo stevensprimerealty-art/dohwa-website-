@@ -4,14 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // ===== HOME PAGE: fade-in + hero slider + hamburger overlay =====
+  // ===== HOME PAGE: fade-in + hero slider + hamburger overlay + home sliders =====
   // (Only runs if .hero-slider exists)
   const heroSlider = document.querySelector(".hero-slider");
   if (heroSlider) {
     // Fade-in on load
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
-    // Hamburger overlay menu (home page)
+    // ------------------------------
+    // Hamburger overlay menu (home)
+    // ------------------------------
     const burger = document.querySelector(".hamburger");
     const overlay = document.querySelector(".overlay-nav");
 
@@ -50,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ===== HERO slider (3 slides, fade, arrow controls) =====
+    // ------------------------------
+    // HERO slider (3 slides)
+    // ------------------------------
     const slides = Array.from(document.querySelectorAll(".hero-slide"));
     const prevBtn = document.querySelector(".hero-arrow--left");
     const nextBtn = document.querySelector(".hero-arrow--right");
@@ -131,13 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // ✅ PROJECT slider (8 slides) “book effect” — FIXED
+    // PROJECT slider (8 slides) “book effect” — FIXED (wrap prev/next)
     // ============================================================
     const projSlider = document.querySelector(".proj-slider");
     if (projSlider) {
-      const cards = Array.from(document.querySelectorAll(".proj-card"));
-      const pPrev = document.querySelector(".proj-arrow--left");
-      const pNext = document.querySelector(".proj-arrow--right");
+      const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
+      const pPrev = projSlider.querySelector(".proj-arrow--left");
+      const pNext = projSlider.querySelector(".proj-arrow--right");
       const stage = projSlider.querySelector(".proj-stage");
 
       const idxEl = document.getElementById("projIndex");
@@ -147,67 +151,131 @@ document.addEventListener("DOMContentLoaded", () => {
       if (totalEl) totalEl.textContent = String(total);
       if (!total) {
         // nothing to run
-        return;
-      }
+      } else {
+        let current = cards.findIndex((c) => c.classList.contains("is-active"));
+        if (current < 0) current = 0;
 
-      let current = cards.findIndex((c) => c.classList.contains("is-active"));
-      if (current < 0) current = 0;
+        const render = () => {
+          const prevI = (current - 1 + total) % total;
+          const nextI = (current + 1) % total;
 
-      const render = () => {
-        const prevI = (current - 1 + total) % total;
-        const nextI = (current + 1) % total;
+          cards.forEach((c, i) => {
+            c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
 
-        cards.forEach((c, i) => {
-          c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+            if (i === current) c.classList.add("is-active");
+            else if (i === prevI) c.classList.add("is-prev");
+            else if (i === nextI) c.classList.add("is-next");
+            else c.classList.add("is-hidden");
+          });
 
-          if (i === current) c.classList.add("is-active");
-          else if (i === prevI) c.classList.add("is-prev");
-          else if (i === nextI) c.classList.add("is-next");
-          else c.classList.add("is-hidden");
-        });
+          if (idxEl) idxEl.textContent = String(current + 1);
+        };
 
-        if (idxEl) idxEl.textContent = String(current + 1);
-      };
+        const goPrev = () => {
+          current = (current - 1 + total) % total;
+          render();
+        };
 
-      const goPrev = () => {
-        current = (current - 1 + total) % total;
+        const goNext = () => {
+          current = (current + 1) % total;
+          render();
+        };
+
+        if (pPrev) pPrev.addEventListener("click", goPrev);
+        if (pNext) pNext.addEventListener("click", goNext);
+
+        // Swipe on mobile
+        let startX = 0;
+        if (stage) {
+          stage.addEventListener(
+            "touchstart",
+            (e) => {
+              startX = e.touches[0].clientX;
+            },
+            { passive: true }
+          );
+
+          stage.addEventListener(
+            "touchend",
+            (e) => {
+              const endX = e.changedTouches[0].clientX;
+              const diff = endX - startX;
+              if (Math.abs(diff) > 50) {
+                if (diff > 0) goPrev();
+                else goNext();
+              }
+            },
+            { passive: true }
+          );
+        }
+
         render();
-      };
-
-      const goNext = () => {
-        current = (current + 1) % total;
-        render();
-      };
-
-      if (pPrev) pPrev.addEventListener("click", goPrev);
-      if (pNext) pNext.addEventListener("click", goNext);
-
-      // Swipe on mobile
-      let startX = 0;
-      if (stage) {
-        stage.addEventListener(
-          "touchstart",
-          (e) => {
-            startX = e.touches[0].clientX;
-          },
-          { passive: true }
-        );
-
-        stage.addEventListener(
-          "touchend",
-          (e) => {
-            const endX = e.changedTouches[0].clientX;
-            const diff = endX - startX;
-            if (Math.abs(diff) > 50) {
-              if (diff > 0) goPrev();
-              else goNext();
-            }
-          },
-          { passive: true }
-        );
       }
+    }
 
-      render();
+    // ============================================================
+    // NEWS slider (2 pages, each page has 2 cards)
+    // - page 1: 2025 + 2024
+    // - page 2: 2023 + 2022
+    // ============================================================
+    const newsSlider = document.querySelector(".news-slider");
+    if (newsSlider) {
+      const pages = Array.from(newsSlider.querySelectorAll(".news-page"));
+      const nPrev = newsSlider.querySelector(".news-arrow--left");
+      const nNext = newsSlider.querySelector(".news-arrow--right");
+      const track = newsSlider.querySelector(".news-track");
+
+      const total = pages.length;
+      if (total) {
+        let current = pages.findIndex((p) => p.classList.contains("is-active"));
+        if (current < 0) current = 0;
+
+        const render = () => {
+          pages.forEach((p, i) => {
+            p.classList.toggle("is-active", i === current);
+          });
+        };
+
+        const goPrev = () => {
+          current = (current - 1 + total) % total;
+          render();
+        };
+
+        const goNext = () => {
+          current = (current + 1) % total;
+          render();
+        };
+
+        if (nPrev) nPrev.addEventListener("click", goPrev);
+        if (nNext) nNext.addEventListener("click", goNext);
+
+        // Swipe (track)
+        let startX = 0;
+        if (track) {
+          track.addEventListener(
+            "touchstart",
+            (e) => {
+              startX = e.touches[0].clientX;
+            },
+            { passive: true }
+          );
+
+          track.addEventListener(
+            "touchend",
+            (e) => {
+              const endX = e.changedTouches[0].clientX;
+              const diff = endX - startX;
+              if (Math.abs(diff) > 50) {
+                if (diff > 0) goPrev();
+                else goNext();
+              }
+            },
+            { passive: true }
+          );
+        }
+
+        render();
+      }
     }
 
     // Home page handled—do not run standard nav toggle below
