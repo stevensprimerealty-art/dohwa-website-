@@ -14,6 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hamburger overlay menu (home page)
     const burger = document.querySelector(".hamburger");
     const overlay = document.querySelector(".overlay-nav");
+
+    const closeOverlay = () => {
+      if (!burger || !overlay) return;
+      overlay.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+    };
+
+    const openOverlay = () => {
+      if (!burger || !overlay) return;
+      overlay.classList.add("is-open");
+      burger.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+    };
+
     if (burger && overlay) {
       burger.addEventListener("click", () => {
         const isOpen = overlay.classList.toggle("is-open");
@@ -21,14 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.setAttribute("aria-hidden", String(!isOpen));
       });
 
-      // Close overlay if user taps outside links (optional)
+      // Close overlay when a link is clicked
       overlay.addEventListener("click", (e) => {
         const target = e.target;
-        if (target && target.tagName === "A") {
-          overlay.classList.remove("is-open");
-          burger.setAttribute("aria-expanded", "false");
-          overlay.setAttribute("aria-hidden", "true");
+        if (target && target.tagName === "A") closeOverlay();
+      });
+
+      // ✅ Close overlay when tapping outside the menu
+      document.addEventListener("click", (e) => {
+        const target = e.target;
+        const clickedInsideOverlay = overlay.contains(target);
+        const clickedBurger = burger.contains(target);
+        const isOpen = overlay.classList.contains("is-open");
+
+        if (isOpen && !clickedInsideOverlay && !clickedBurger) {
+          closeOverlay();
         }
+      });
+
+      // ✅ Close on ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeOverlay();
       });
     }
 
@@ -38,14 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector(".hero-arrow--right");
 
     if (slides.length) {
-      let index = slides.findIndex(s => s.classList.contains("is-active"));
+      let index = slides.findIndex((s) => s.classList.contains("is-active"));
       if (index < 0) index = 0;
 
       const show = (i) => {
-        slides.forEach(s => s.classList.remove("is-active"));
+        // Guard
+        if (i < 0 || i >= slides.length) return;
+
+        slides.forEach((s) => s.classList.remove("is-active"));
         slides[i].classList.add("is-active");
 
-        // Re-trigger content fade per slide smoothly (no “breaks”)
+        // Re-trigger content fade per slide smoothly
         const content = slides[i].querySelector(".hero-content");
         if (content) {
           content.style.opacity = "0";
@@ -68,7 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (prevBtn) prevBtn.addEventListener("click", prev);
       if (nextBtn) nextBtn.addEventListener("click", next);
 
-      // Optional auto-advance (set to false if you don't want it)
+      // ✅ Keyboard slide controls (only when overlay menu is not open)
+      document.addEventListener("keydown", (e) => {
+        const overlayOpen = overlay && overlay.classList.contains("is-open");
+        if (overlayOpen) return;
+
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+
+      // Optional auto-advance
       const AUTO = true;
       const AUTO_MS = 6500;
       let timer = null;
@@ -87,12 +127,18 @@ document.addEventListener("DOMContentLoaded", () => {
       startAuto();
 
       // Pause/restart auto on manual click
-      [prevBtn, nextBtn].forEach(btn => {
+      [prevBtn, nextBtn].forEach((btn) => {
         if (!btn) return;
         btn.addEventListener("click", () => {
           stopAuto();
           startAuto();
         });
+      });
+
+      // ✅ Pause auto when tab is hidden, resume when visible
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAuto();
+        else startAuto();
       });
     }
 
@@ -119,6 +165,14 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.style.borderRadius = "12px";
       nav.style.minWidth = "160px";
       nav.style.zIndex = "100";
+    });
+
+    // Close if user clicks outside (nice-to-have)
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      const clickedToggle = toggle.contains(target);
+      const clickedNav = nav.contains(target);
+      if (!clickedToggle && !clickedNav) nav.style.display = "none";
     });
   }
 });
