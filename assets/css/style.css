@@ -478,7 +478,7 @@ body.is-loaded .hamburger span{
 .proj-slider{ position:relative; }
 .proj-stage{
   position:relative;
-  height: 560px;          /* ✅ more space so caption never touches controls */
+  height: 560px;
   overflow:hidden;
   border-radius:20px;
 }
@@ -497,8 +497,6 @@ body.is-loaded .hamburger span{
   transform: translateX(-50%);
   opacity:0;
   pointer-events:none;
-
-  /* ✅ critical: stop overlaps */
   visibility:hidden;
 
   transition:
@@ -519,8 +517,6 @@ body.is-loaded .hamburger span{
   object-fit:cover;
   display:block;
 }
-
-/* ✅ Caption: only active should show (prevents scribble) */
 .proj-text{
   display:none;
   margin:14px 4px 0;
@@ -560,8 +556,6 @@ body.is-loaded .hamburger span{
   visibility:visible;
   transition-delay:0ms;
 }
-
-/* hide far slides */
 .proj-card.is-hidden{
   opacity:0;
   transform: translateX(-50%) scale(0.85);
@@ -591,7 +585,6 @@ body.is-loaded .hamburger span{
   justify-content:center;
 }
 .proj-arrow:hover{ background: var(--alt); }
-
 .proj-counter{
   font-size:16px;
   color:var(--text);
@@ -622,26 +615,21 @@ body.is-loaded .hamburger span{
 }
 
 /* slider */
-.news-slider{
-  position:relative;
-}
+.news-slider{ position:relative; }
 .news-track{
-  display:flex;
-  gap:0;
+  position:relative;
   overflow:hidden;
 }
 
 /* pages */
 .news-page{
-  min-width:100%;
+  display:none;
   opacity:0;
-  pointer-events:none;
-  transform: translateX(0);
-  transition: opacity 350ms ease;
 }
 .news-page.is-active{
+  display:block;
   opacity:1;
-  pointer-events:auto;
+  transition: opacity 350ms ease;
 }
 
 /* grid like inspo (2 columns) */
@@ -702,6 +690,124 @@ body.is-loaded .hamburger span{
 }
 .news-arrow:hover{ background: var(--alt); }
 
+/* =========================
+   ✅ CAREER block (home)
+   ========================= */
+
+/* fade-in on scroll helper */
+.reveal{
+  opacity:0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.reveal.is-in{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* section */
+.home-career{
+  padding:66px 0 74px;
+  background:#fff;
+  border-top:1px solid var(--line);
+}
+
+/* big image background card */
+.career-hero{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  min-height:520px;
+  border:1px solid var(--line);
+}
+
+/* image */
+.career-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+}
+
+/* dark overlay like dohwa */
+.career-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.62) 0%,
+    rgba(0,0,0,0.42) 45%,
+    rgba(0,0,0,0.18) 100%
+  );
+}
+
+/* text */
+.career-overlay{
+  position:relative;
+  z-index:2;
+  padding: 54px 52px;
+  color:#fff;
+  max-width: 760px;
+}
+.career-kicker{
+  margin:0 0 14px;
+  letter-spacing:0.34em;
+  font-weight:600;
+  opacity:0.95;
+}
+.career-title{
+  margin:0 0 14px;
+  font-size:34px;
+  line-height:1.2;
+  font-weight:700;
+}
+.career-desc{
+  margin:0;
+  color: rgba(255,255,255,0.88);
+  font-size:16px;
+  line-height:1.75;
+}
+
+/* buttons */
+.career-cta{
+  margin-top:26px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.career-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  border-radius:14px;
+  text-decoration:none;
+  color:#fff;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(6px);
+  transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+}
+
+/* ✅ hover arrow slide like Dohwa */
+.career-arrow{
+  display:inline-block;
+  transform: translateX(0);
+  transition: transform 220ms ease;
+}
+.career-btn:hover{
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(255,255,255,0.30);
+  transform: translateY(-2px);
+}
+.career-btn:hover .career-arrow{
+  transform: translateX(6px);
+}
+
 /* ====== MOBILE ====== */
 @media (max-width: 820px){
   .cards{grid-template-columns:1fr}
@@ -712,20 +818,21 @@ body.is-loaded .hamburger span{
   .form-grid{grid-template-columns:1fr}
 
   .biz-grid{grid-template-columns:1fr}
-
   .proj-stage{ height: 560px; }
   .proj-text{ font-size:18px; }
 
   .news-grid{ grid-template-columns:1fr; }
   .news-card h3{ font-size:22px; }
   .news-tag{ font-size:18px; }
+
+  .career-overlay{ padding: 34px 22px; }
+  .career-title{ font-size:26px; }
 }
 @media (max-width: 480px){
   .hero-arrow{ width:48px; height:48px; }
   .hero-arrow--left{ left:10px; }
   .hero-arrow--right{ right:10px; }
 
-  /* on very small screens, keep only center visible */
   .proj-card.is-prev,
   .proj-card.is-next{ opacity:0; visibility:hidden; }
 }
