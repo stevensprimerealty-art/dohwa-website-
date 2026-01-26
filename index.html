@@ -8,122 +8,81 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="./">DOHWA Engineering</a>
+<body class="home">
+  <!-- HERO HEADER (over the hero like inspo) -->
+  <header class="hero-header">
+    <div class="hero-header__inner">
+      <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
 
-     <nav class="nav">
-     <a href="./about.html">About</a>
-     <a href="./business.html">Business</a>
-     <a href="./projects.html">Projects</a>
-     <a href="./news.html">News</a>
-     <a href="./careers.html">Careers</a>
-    <a href="./contact.html">Contact</a>
- </nav>
- 
-      <button class="nav-toggle" aria-label="Open menu" type="button">☰</button>
+      <!-- Hamburger (3 lines) -->
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+
+    <!-- Overlay navigation -->
+    <nav class="overlay-nav" aria-hidden="true">
+      <a href="./about.html">About</a>
+      <a href="./business.html">Business</a>
+      <a href="./projects.html">Projects</a>
+      <a href="./news.html">News</a>
+      <a href="./careers.html">Careers</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <p class="kicker">Architecture · Construction · Engineering · Transportation</p>
-        <h1>Engineering Infrastructure for a Connected World</h1>
-        <p class="lead">
-          DOHWA Engineering Co., Ltd delivers multidisciplinary infrastructure and transportation solutions
-          across Korea, Europe, and North America.
-        </p>
-        <div class="cta-row">
-          <a class="btn" href="./projects.html">View Projects</a>
-          <a class="btn btn-ghost" href="./careers.html">Applications Ongoing</a>
-        </div>
+    <!-- FULLSCREEN HERO SLIDER (3 slides, fade, arrows, centered text + GO below) -->
+    <section class="hero-slider" aria-label="Homepage hero">
+      <div class="hero-slides">
+
+        <!-- Slide 1 -->
+        <article class="hero-slide is-active" style="--bg:url('assets/images/hero-1.jpg'); --pos:center;">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <h1 class="hero-title">Prioritize nature<br>and people</h1>
+            <p class="hero-subtitle">We create a future where people and nature are together</p>
+            <a href="./about.html" class="hero-go">GO</a>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="hero-slide" style="--bg:url('assets/images/hero-2.jpg'); --pos:center;">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <h1 class="hero-title">Growth and<br>Innovation</h1>
+            <p class="hero-subtitle">Take a look at Dohwa Engineering's history of endless growth and innovation</p>
+            <a href="./about.html" class="hero-go">GO</a>
+          </div>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="hero-slide" style="--bg:url('assets/images/hero-3.jpg'); --pos:center;">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <h1 class="hero-title">Challenge<br>to the world</h1>
+            <p class="hero-subtitle">DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.</p>
+            <a href="./business.html" class="hero-go">GO</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Arrow controls -->
+      <button class="hero-arrow hero-arrow--left" type="button" aria-label="Previous slide">←</button>
+      <button class="hero-arrow hero-arrow--right" type="button" aria-label="Next slide">→</button>
+
+      <!-- Scroll hint -->
+      <div class="hero-scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <i></i>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <div class="container grid-2">
-        <div>
-          <h2>About DOHWA</h2>
-          <p>
-            DOHWA Engineering Co., Ltd is a global engineering and construction consultancy providing end-to-end
-            support from planning and design to supervision and project delivery.
-          </p>
-          <p>
-            With international branches in Italy, Netherlands, Spain, and the United States, we support clients
-            with local expertise and global standards.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Global Network</h3>
-          <ul class="list">
-            <li>Korea (Headquarters)</li>
-            <li>Italy · Netherlands · Spain</li>
-            <li>New York · United States</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="business" class="section section-alt">
-      <div class="container">
-        <h2>Business Areas</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Architecture & Urban Development</h3>
-            <p>Concept design, planning, and integrated delivery for public and commercial environments.</p>
-          </article>
-          <article class="card">
-            <h3>Construction Engineering</h3>
-            <p>Constructability reviews, supervision, quality assurance, and execution support.</p>
-          </article>
-          <article class="card">
-            <h3>Transportation Infrastructure</h3>
-            <p>Roads, railways, bridges, tunnels, and transit systems designed for safety and resilience.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="split">
-          <h2>Featured Projects</h2>
-          <a class="link" href="./projects.html">See all projects →</a>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <h3>Transportation Corridor Upgrade</h3>
-            <p class="muted">Planning · Design · Supervision</p>
-          </article>
-          <article class="card">
-            <h3>Urban Mobility Interchange</h3>
-            <p class="muted">Transit · Structural · Systems</p>
-          </article>
-          <article class="card">
-            <h3>Public Facility Development</h3>
-            <p class="muted">Architecture · Construction Engineering</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section section-alt">
-      <div class="container grid-2">
-        <div>
-          <h2>Contact</h2>
-          <p>For business inquiries, partnerships, or project discussions, contact our team.</p>
-          <p class="muted">Add your official email and office addresses here.</p>
-        </div>
-        <div class="card">
-          <h3>Business Inquiries</h3>
-          <p>Email: <a href="mailto:info@dohwa-engineering.com">info@dohwa-engineering.com</a></p>
-          <p>Phone: +82-00-0000-0000</p>
-        </div>
-      </div>
-    </section>
+    <!-- OPTIONAL: If you want a small section under hero later, add it here -->
   </main>
 
   <footer class="site-footer">
