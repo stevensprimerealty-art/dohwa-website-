@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<body class="home">
+<body class="home" id="top">
   <!-- HERO HEADER (over the hero like inspo) -->
   <header class="hero-header">
     <div class="hero-header__inner">
@@ -296,17 +296,14 @@
       </div>
     </section>
 
-    <!-- ===== CAREER (fade-in on scroll) ===== -->
+        <!-- ===== CAREER (fade-in on scroll) ===== -->
     <section class="home-career reveal" aria-label="Career">
       <div class="container">
         <div class="career-hero">
-          <!-- ✅ put your image here (the team photo) -->
           <img class="career-bg" src="assets/images/career-bg.jpg" alt="DOHWA team" />
 
-          <!-- overlay text -->
           <div class="career-overlay">
             <p class="career-kicker">CAREER</p>
-
             <h2 class="career-title">We welcome creative individuals full of passion and enthusiasm.</h2>
 
             <p class="career-desc">
@@ -328,12 +325,90 @@
       </div>
     </section>
 
+    <!-- ===== BIG WORDMARK SLIDE (DOHWA ENGINEERING) ===== -->
+    <section class="home-wordmark" aria-label="DOHWA wordmark">
+      <div class="wordmark-line">
+        <div class="wordmark-track">
+          DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUSTAINABLE MANAGEMENT (image + text + boxes) ===== -->
+    <section class="home-sustain reveal" aria-label="Sustainable Management">
+      <div class="sustain-hero">
+        <img class="sustain-bg" src="assets/images/sustain-bg.jpg" alt="Sustainable Management background" />
+
+        <div class="sustain-overlay">
+          <h2 class="sustain-title">Sustainable Management</h2>
+          <p class="sustain-desc">
+            DOHWA will continue to provide the best service<br />
+            based on its best technology and quality for both<br />
+            clients and partners
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="sustain-boxes">
+          <a class="sustain-box reveal-drop" href="#">
+            <span>Management</span><br />
+            <span>through Sharing</span>
+          </a>
+
+          <a class="sustain-box reveal-drop" href="#">
+            <span>Safety and Quality</span><br />
+            <span>Management</span>
+          </a>
+
+          <a class="sustain-box reveal-drop" href="#">
+            <span>Ethics and</span><br />
+            <span>Compliance</span><br />
+            <span>Management</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> DOHWA Engineering Co., Ltd. All rights reserved.</p>
-      <p class="muted">Corporate Website</p>
+  <!-- ✅ FOOTER MUST BE AFTER MAIN -->
+  <footer class="dohwa-footer" aria-label="Footer">
+    <div class="container">
+
+      <details class="family-site">
+        <summary>Family Site</summary>
+        <div class="family-panel">
+          <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener">DOHWA Official</a>
+        </div>
+      </details>
+
+      <div class="footer-row">
+        <div class="footer-brand">DOHWA</div>
+
+        <div class="footer-social" aria-label="Social links">
+          <a class="soc" href="https://www.facebook.com/dohwaengineering" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a class="soc" href="https://www.linkedin.com/company/dohwa-engineering" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a class="soc" href="https://blog.naver.com/dohwa_official" target="_blank" rel="noopener" aria-label="Naver Blog">N</a>
+          <a class="soc" href="https://www.youtube.com/channel/UCUaAuOZcXXooHu7ddO_L03g?view_as=subscriber" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+
+      <div class="footer-address">
+        12 Sejong-daero 12-gil, Jung District, Seoul
+      </div>
+
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <span class="footer-sep">|</span>
+        <a href="#" class="footer-link">Ethics Hotline</a>
+      </div>
+
+      <div class="footer-bottom">
+        <div>DOHWA Engineering Co., LTD. All RIGHTS RESERVED</div>
+        <a class="footer-top" href="#top" aria-label="Back to top">TOP</a>
+      </div>
+
     </div>
   </footer>
 
