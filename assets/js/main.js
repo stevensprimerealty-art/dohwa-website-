@@ -88,8 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn2: "Go to Recruitment Website <span class='career-arrow'>›</span>",
 
       // wordmark
-      wordmark:
-        "DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING",
+      wordmark: "DOHWA ENGINEERING"
 
       // sustain
       sustain_title: "Sustainable Management",
@@ -175,9 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn1: "채용 안내 <span class='career-arrow'>›</span>",
       career_btn2: "채용 사이트 <span class='career-arrow'>›</span>",
 
-      wordmark:
-        "DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING",
-
+      wordmark: "DOHWA ENGINEERING"
+  
       sustain_title: "지속가능경영",
       sustain_desc:
         "도화는 최고의 기술과 품질을 바탕으로<br />" +
@@ -260,8 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn1: "Ir a Información de Reclutamiento <span class='career-arrow'>›</span>",
       career_btn2: "Ir al Sitio de Reclutamiento <span class='career-arrow'>›</span>",
 
-      wordmark:
-        "DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING",
+      wordmark: "DOHWA ENGINEERING"
 
       sustain_title: "Gestión Sostenible",
       sustain_desc:
@@ -345,8 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn1: "Ga naar Wervingsinformatie <span class='career-arrow'>›</span>",
       career_btn2: "Ga naar Wervingswebsite <span class='career-arrow'>›</span>",
 
-      wordmark:
-        "DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING",
+      wordmark: "DOHWA ENGINEERING"
 
       sustain_title: "Duurzaam Beheer",
       sustain_desc:
