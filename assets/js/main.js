@@ -35,15 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
       hero1_title: "Prioritize nature<br>and people",
       hero1_sub: "We create a future where people and nature are together",
       hero2_title: "Growth and<br>Innovation",
-      hero2_sub: "Take a look at Dohwa Engineering's history of endless growth and innovation",
+      hero2_sub:
+        "Take a look at Dohwa Engineering's history of endless growth and innovation",
       hero3_title: "Challenge<br>to the world",
-      hero3_sub: "DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.",
+      hero3_sub:
+        "DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.",
       go: "GO",
       scroll: "Scroll",
 
       // business
       sec_business: "BUSINESS",
-      business_desc: "DOHWA, the unrivaled multi-disciplinary engineering firm, continues to tackle global challenges.",
+      business_desc:
+        "DOHWA, the unrivaled multi-disciplinary engineering firm, continues to tackle global challenges.",
       biz1_eyebrow: "Water Sector",
       biz1_title: "Water Sector <span class='biz-arrow'>›</span>",
       biz1_li1: "Water Supply",
@@ -58,14 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
       // projects
       sec_project: "PROJECT",
       project_desc: "DOHWA continues to tackle global challenges.",
-      proj1: "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam",
-      proj2: "Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project",
+      proj1:
+        "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam",
+      proj2:
+        "Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project",
       proj3: "EPC construction for Sinji wind farm development project",
-      proj4: "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan",
-      proj5: "On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project",
-      proj6: "Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis",
-      proj7: "Preliminary and detailed design for structural improvement of Nodeul-ro Road",
-      proj8: "Feasibility Study and Master plan for Saemangeum new airport construction project",
+      proj4:
+        "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan",
+      proj5:
+        "On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project",
+      proj6:
+        "Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis",
+      proj7:
+        "Preliminary and detailed design for structural improvement of Nodeul-ro Road",
+      proj8:
+        "Feasibility Study and Master plan for Saemangeum new airport construction project",
 
       // news
       sec_news: "NEWS",
@@ -88,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn2: "Go to Recruitment Website <span class='career-arrow'>›</span>",
 
       // wordmark
-      wordmark: "DOHWA ENGINEERING"
+      wordmark: "DOHWA ENGINEERING",
 
       // sustain
       sustain_title: "Sustainable Management",
@@ -98,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "clients and partners",
       sustain_box1: "<span>Management</span><br /><span>through Sharing</span>",
       sustain_box2: "<span>Safety and Quality</span><br /><span>Management</span>",
-      sustain_box3: "<span>Ethics and</span><br /><span>Compliance</span><br /><span>Management</span>",
+      sustain_box3:
+        "<span>Ethics and</span><br /><span>Compliance</span><br /><span>Management</span>",
 
       // footer
       family_site: "Family Site",
@@ -174,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn1: "채용 안내 <span class='career-arrow'>›</span>",
       career_btn2: "채용 사이트 <span class='career-arrow'>›</span>",
 
-      wordmark: "DOHWA ENGINEERING"
-  
+      wordmark: "DOHWA ENGINEERING",
+
       sustain_title: "지속가능경영",
       sustain_desc:
         "도화는 최고의 기술과 품질을 바탕으로<br />" +
@@ -258,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       career_btn1: "Ir a Información de Reclutamiento <span class='career-arrow'>›</span>",
       career_btn2: "Ir al Sitio de Reclutamiento <span class='career-arrow'>›</span>",
 
-      wordmark: "DOHWA ENGINEERING"
+      wordmark: "DOHWA ENGINEERING",
 
       sustain_title: "Gestión Sostenible",
       sustain_desc:
@@ -337,12 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
       career_title: "We verwelkomen creatieve mensen vol passie en enthousiasme.",
       career_desc:
         "\"Mensgericht denken\" is al ongeveer 60 jaar de drijvende kracht, en<br>" +
-        "\"progressieve actie\" en<br>" +
+        "\"progressieve actie\" and<br>" +
         "\"creatief denken\" brengen ons vooruit naar de toekomst.",
       career_btn1: "Ga naar Wervingsinformatie <span class='career-arrow'>›</span>",
       career_btn2: "Ga naar Wervingswebsite <span class='career-arrow'>›</span>",
 
-      wordmark: "DOHWA ENGINEERING"
+      wordmark: "DOHWA ENGINEERING",
 
       sustain_title: "Duurzaam Beheer",
       sustain_desc:
@@ -369,27 +380,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyLang(lang) {
     const dict = i18n[lang] || i18n.en;
 
-    // set <html lang="">
     document.documentElement.lang = lang;
 
-    // data-i18n (text)
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (!key || dict[key] == null) return;
       el.textContent = dict[key];
     });
 
-    // data-i18n-html (html)
     document.querySelectorAll("[data-i18n-html]").forEach((el) => {
       const key = el.getAttribute("data-i18n-html");
       if (!key || dict[key] == null) return;
       el.innerHTML = dict[key];
     });
 
-    // Active state for language buttons
     langLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.lang === lang));
-
-    // Save
     localStorage.setItem(LANG_KEY, lang);
   }
 
@@ -402,12 +407,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Load saved language (default EN)
   applyLang(localStorage.getItem(LANG_KEY) || "en");
 
-  // ============================================================
-  // Reveal on scroll (CAREER + SUSTAIN + boxes etc.)
-  // ============================================================
+  // Reveal on scroll
   const revealTargets = Array.from(document.querySelectorAll(".reveal, .reveal-drop"));
   if (revealTargets.length && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -425,9 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
     revealTargets.forEach((el) => el.classList.add("is-in"));
   }
 
-  // ============================================================
   // Hamburger overlay menu
-  // ============================================================
   const burger = document.querySelector(".hamburger");
   const overlay = document.querySelector(".overlay-nav");
 
@@ -453,9 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (e) => {
       const target = e.target;
       const isOpen = overlay.classList.contains("is-open");
-      const clickedInsideOverlay = overlay.contains(target);
-      const clickedBurger = burger.contains(target);
-      if (isOpen && !clickedInsideOverlay && !clickedBurger) closeOverlay();
+      if (isOpen && !overlay.contains(target) && !burger.contains(target)) closeOverlay();
     });
 
     document.addEventListener("keydown", (e) => {
@@ -463,9 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ============================================================
   // HERO slider
-  // ============================================================
   const slides = Array.from(document.querySelectorAll(".hero-slide"));
   const prevBtn = document.querySelector(".hero-arrow--left");
   const nextBtn = document.querySelector(".hero-arrow--right");
@@ -499,8 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nextBtn) nextBtn.addEventListener("click", next);
 
     document.addEventListener("keydown", (e) => {
-      const overlayOpen = overlay && overlay.classList.contains("is-open");
-      if (overlayOpen) return;
+      if (overlay && overlay.classList.contains("is-open")) return;
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     });
@@ -536,9 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ============================================================
-  // PROJECT slider (book effect)
-  // ============================================================
+  // PROJECT slider
   const projSlider = document.querySelector(".proj-slider");
   if (projSlider) {
     const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
@@ -595,9 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  // ============================================================
-  // NEWS slider (2 pages)
-  // ============================================================
+  // NEWS slider
   const newsSlider = document.querySelector(".news-slider");
   if (newsSlider) {
     const track = newsSlider.querySelector(".news-track");
