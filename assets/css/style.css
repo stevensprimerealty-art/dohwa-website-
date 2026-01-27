@@ -153,6 +153,39 @@ body.home main{
   justify-content: space-between;
   align-items:center;
 }
+/* =========================
+   LANGUAGE SWITCH (KOR ENG ESP DUTCH)
+   ========================= */
+/* language row */
+.lang-switch{
+  pointer-events:auto;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:center;
+}
+
+.lang-switch a{
+  color: rgba(255,255,255,0.80);
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:0.12em;
+  padding:6px 4px;
+}
+
+.lang-switch a.is-active{
+  color:#fff;
+  font-weight:700;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .lang-switch{ gap:10px; }
+  .lang-switch a{
+    font-size:12px;
+    letter-spacing:0.08em;
+  }
+}
 .hero-logo{
   pointer-events: auto;
   color:#fff;
