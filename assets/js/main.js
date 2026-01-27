@@ -3,29 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ============================================================
      GLOBAL (ALL PAGES)
   ============================================================ */
-
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
   requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
   /* ============================================================
-     LANGUAGE SWITCH (ALL PAGES) ✅ FIXED (FULL: EN/KO/ES/NL)
-     - It changes everything that has: data-i18n OR data-i18n-html
-     - Works on index + about (and any other page using those attributes)
+     LANGUAGE SWITCH (ALL PAGES)
+     - Changes EVERYTHING that has: data-i18n OR data-i18n-html
   ============================================================ */
-
   const LANG_KEY = "dohwa_lang";
 
   const i18n = {
     en: {
-      // language labels
       lang_ko: "Korean",
       lang_en: "English",
       lang_es: "Español",
       lang_nl: "Dutch",
 
-      // nav
       nav_about: "About",
       nav_business: "Business",
       nav_projects: "Projects",
@@ -33,22 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
       nav_careers: "Careers",
       nav_contact: "Contact",
 
-      // hero (HOME)
       hero1_title: "Prioritize nature<br>and people",
       hero1_sub: "We create a future where people and nature are together",
       hero2_title: "Growth and<br>Innovation",
-      hero2_sub:
-        "Take a look at Dohwa Engineering's history of endless growth and innovation",
+      hero2_sub: "Take a look at Dohwa Engineering's history of endless growth and innovation",
       hero3_title: "Challenge<br>to the world",
-      hero3_sub:
-        "DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.",
+      hero3_sub: "DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.",
       go: "GO",
       scroll: "Scroll",
 
-      // business (HOME)
       sec_business: "BUSINESS",
-      business_desc:
-        "DOHWA, the unrivaled multi-disciplinary engineering firm, continues to tackle global challenges.",
+      business_desc: "DOHWA, the unrivaled multi-disciplinary engineering firm, continues to tackle global challenges.",
       biz1_eyebrow: "Water Sector",
       biz1_title: "Water Sector <span class='biz-arrow'>›</span>",
       biz1_li1: "Water Supply",
@@ -60,67 +50,46 @@ document.addEventListener("DOMContentLoaded", () => {
       biz2_li2: "Landscape/Leisure",
       biz2_li3: "Smart cities",
 
-      // projects (HOME)
       sec_project: "PROJECT",
       project_desc: "DOHWA continues to tackle global challenges.",
-      proj1:
-        "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam",
-      proj2:
-        "Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project",
+      proj1: "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam",
+      proj2: "Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project",
       proj3: "EPC construction for Sinji wind farm development project",
-      proj4:
-        "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan",
-      proj5:
-        "On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project",
-      proj6:
-        "Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis",
-      proj7:
-        "Preliminary and detailed design for structural improvement of Nodeul-ro Road",
-      proj8:
-        "Feasibility Study and Master plan for Saemangeum new airport construction project",
+      proj4: "Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan",
+      proj5: "On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project",
+      proj6: "Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis",
+      proj7: "Preliminary and detailed design for structural improvement of Nodeul-ro Road",
+      proj8: "Feasibility Study and Master plan for Saemangeum new airport construction project",
 
-      // news (HOME)
       sec_news: "NEWS",
-      news_desc:
-        "News about Dohwa’s efforts to help develop regions and the nation.",
+      news_desc: "News about Dohwa’s efforts to help develop regions and the nation.",
       news_tag_awards: "Awards",
-      news_2025:
-        "2025 ENR The Top<br>Global & International<br>Design Firms List",
-      news_2024:
-        "2024 ENR The Top<br>Global & International<br>Design Firms List",
-      news_2023:
-        "2023 ENR The Top<br>Global & International<br>Design Firms List",
-      news_2022:
-        "2022 ENR The Top<br>Global & International<br>Design Firms List",
+      news_2025: "2025 ENR The Top<br>Global & International<br>Design Firms List",
+      news_2024: "2024 ENR The Top<br>Global & International<br>Design Firms List",
+      news_2023: "2023 ENR The Top<br>Global & International<br>Design Firms List",
+      news_2022: "2022 ENR The Top<br>Global & International<br>Design Firms List",
       details: "Details",
 
-      // career (HOME)
       career_kicker: "CAREER",
-      career_title:
-        "We welcome creative individuals full of passion and enthusiasm.",
+      career_title: "We welcome creative individuals full of passion and enthusiasm.",
       career_desc:
         "\"Human-centered thinking\", which puts people first, has been the driving force behind our management for about 60 years, and<br>" +
         "\"progressive action\" and<br>" +
         "\"creative thinking\" are forces that propel us forward as we pioneer the future.",
-      career_btn1:
-        "Go to Recruitment Information <span class='career-arrow'>›</span>",
-      career_btn2:
-        "Go to Recruitment Website <span class='career-arrow'>›</span>",
+      career_btn1: "Go to Recruitment Information <span class='career-arrow'>›</span>",
+      career_btn2: "Go to Recruitment Website <span class='career-arrow'>›</span>",
 
-      // wordmark + sustain (HOME)
       wordmark: "DOHWA ENGINEERING",
+
       sustain_title: "Sustainable Management",
       sustain_desc:
         "DOHWA will continue to provide the best service<br />" +
         "based on its best technology and quality for both<br />" +
         "clients and partners",
       sustain_box1: "<span>Management</span><br /><span>through Sharing</span>",
-      sustain_box2:
-        "<span>Safety and Quality</span><br /><span>Management</span>",
-      sustain_box3:
-        "<span>Ethics and</span><br /><span>Compliance</span><br /><span>Management</span>",
+      sustain_box2: "<span>Safety and Quality</span><br /><span>Management</span>",
+      sustain_box3: "<span>Ethics and</span><br /><span>Compliance</span><br /><span>Management</span>",
 
-      // footer
       family_site: "Family Site",
       family_official: "DOHWA Official",
       footer_address: "12 Sejong-daero 12-gil, Jung District, Seoul",
@@ -129,16 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
       rights: "DOHWA Engineering Co., LTD. All RIGHTS RESERVED",
       top: "TOP",
 
-      // ABOUT
       about_kicker: "COMPANY OVERVIEW",
-      about_title:
-        "DOHWA designs the world,<br>and together we create the future",
+      about_title: "DOHWA designs the world,<br>and together we create the future",
       overview_heading: "Overview",
       overview_body:
         "<p><strong>DOHWA Engineering Co., LTD.</strong> is South Korea's top-ranked multi-disciplinary engineering consulting firm.</p>" +
-        "<p>DOHWA Engineering Co., LTD. is the Number 1 ranking multi-disciplinary engineering consulting firm in South Korea that provides Planning, Feasibility Studies, Design, Analysis, Testing, Supervision, Commissioning, Evaluation/Assessment, and Consulting and Training Services in all areas of Engineering such as the Water Supply and Wastewater Treatment, Water Resources Management, Urban Planning, Road Traffic, Structures, Harbor and Ports, Rail, Environmental Engineering, etc.</p>" +
-        "<p>DOHWA is also expanding its businesses to become the EPC services provider that covers not only pure engineering areas such as Design and Supervision but also the Design of Constructions, Procurement and Supply of Materials, Construction Works, Commissioning, Permits and Licenses, etc.</p>" +
-        "<p>DOHWA is a global engineering company that has been the first-of-its-kind in Korea, and is exceeding expectations by providing the best engineering services to bring about a brighter future.</p>",
+        "<p>DOHWA provides planning, feasibility studies, design, analysis, testing, supervision, commissioning, evaluation, consulting and training across water, urban planning, transport, structures, ports, rail and environmental engineering.</p>" +
+        "<p>DOHWA is expanding into EPC services including procurement, construction, commissioning, permits and licensing.</p>" +
+        "<p>As a global engineering leader, DOHWA exceeds expectations to build a brighter future.</p>",
     },
 
     ko: {
@@ -462,34 +429,32 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const langNav = document.querySelector(".lang-switch");
-  const langLinks = Array.from(
-    document.querySelectorAll(".lang-switch a[data-lang]")
-  );
+  const langLinks = Array.from(document.querySelectorAll(".lang-switch a[data-lang]"));
+
+  function getDict(lang) {
+    const d = i18n[lang];
+    // if missing or empty, fallback to English
+    if (!d || Object.keys(d).length === 0) return i18n.en;
+    return d;
+  }
 
   function applyLang(lang) {
-    const dict = i18n[lang] || i18n.en;
-
+    const dict = getDict(lang);
     document.documentElement.lang = lang;
 
-    // data-i18n -> text
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (!key) return;
       if (dict[key] != null) el.textContent = dict[key];
     });
 
-    // data-i18n-html -> html
     document.querySelectorAll("[data-i18n-html]").forEach((el) => {
       const key = el.getAttribute("data-i18n-html");
       if (!key) return;
       if (dict[key] != null) el.innerHTML = dict[key];
     });
 
-    // active button
-    langLinks.forEach((a) =>
-      a.classList.toggle("is-active", a.dataset.lang === lang)
-    );
-
+    langLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.lang === lang));
     localStorage.setItem(LANG_KEY, lang);
   }
 
@@ -505,9 +470,31 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang(localStorage.getItem(LANG_KEY) || "en");
 
   /* ============================================================
+     REVEAL ON SCROLL (ALL PAGES) ✅ FIXES CAREER NOT SHOWING
+     - Adds .is-in to .reveal and .reveal-drop
+  ============================================================ */
+  const revealTargets = Array.from(document.querySelectorAll(".reveal, .reveal-drop"));
+
+  if (revealTargets.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12 }
+    );
+    revealTargets.forEach((el) => io.observe(el));
+  } else {
+    // fallback: show everything
+    revealTargets.forEach((el) => el.classList.add("is-in"));
+  }
+
+  /* ============================================================
      HAMBURGER MENU (ALL PAGES)
   ============================================================ */
-
   const burger = document.querySelector(".hamburger");
   const overlay = document.querySelector(".overlay-nav");
 
@@ -543,7 +530,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ============================================================
      HERO SLIDER (HOME ONLY)
   ============================================================ */
-
   const heroSlider = document.querySelector(".hero-slider");
   if (heroSlider) {
     const slides = Array.from(heroSlider.querySelectorAll(".hero-slide"));
@@ -571,81 +557,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (prevBtn) prevBtn.addEventListener("click", prev);
       if (nextBtn) nextBtn.addEventListener("click", next);
+
+      // OPTIONAL auto
+      const AUTO = true;
+      const AUTO_MS = 6500;
+      let timer = null;
+
+      const stopAuto = () => { if (timer) clearInterval(timer); timer = null; };
+      const startAuto = () => { if (!AUTO) return; stopAuto(); timer = setInterval(next, AUTO_MS); };
+
+      startAuto();
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAuto();
+        else startAuto();
+      });
     }
   }
 
   /* ============================================================
-     PROJECT SLIDER (HOME ONLY) ✅ (keeps your counter working)
+     PROJECT SLIDER (HOME ONLY) ✅ BOOK STYLE + COUNTER
+     - Uses classes: is-active, is-prev, is-next, is-hidden
   ============================================================ */
-
   const projSlider = document.querySelector(".proj-slider");
   if (projSlider) {
     const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
-    const prevBtn = projSlider.querySelector(".proj-arrow--left");
-    const nextBtn = projSlider.querySelector(".proj-arrow--right");
+    const pPrev = projSlider.querySelector(".proj-arrow--left");
+    const pNext = projSlider.querySelector(".proj-arrow--right");
+    const stage = projSlider.querySelector(".proj-stage");
     const idxEl = document.getElementById("projIndex");
     const totalEl = document.getElementById("projTotal");
 
-    if (cards.length) {
-      let index = cards.findIndex((c) => c.classList.contains("is-active"));
-      if (index < 0) index = 0;
+    const total = cards.length;
+    if (totalEl) totalEl.textContent = String(total);
 
-      if (totalEl) totalEl.textContent = String(cards.length);
+    let current = cards.findIndex((c) => c.classList.contains("is-active"));
+    if (current < 0) current = 0;
 
-      const render = () => {
-        cards.forEach((c, i) => c.classList.toggle("is-active", i === index));
-        if (idxEl) idxEl.textContent = String(index + 1);
-      };
+    const render = () => {
+      if (!total) return;
+      const prevI = (current - 1 + total) % total;
+      const nextI = (current + 1) % total;
 
-      const prev = () => {
-        index = (index - 1 + cards.length) % cards.length;
-        render();
-      };
+      cards.forEach((c, i) => {
+        c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+        if (i === current) c.classList.add("is-active");
+        else if (i === prevI) c.classList.add("is-prev");
+        else if (i === nextI) c.classList.add("is-next");
+        else c.classList.add("is-hidden");
+      });
 
-      const next = () => {
-        index = (index + 1) % cards.length;
-        render();
-      };
+      if (idxEl) idxEl.textContent = String(current + 1);
+    };
 
-      if (prevBtn) prevBtn.addEventListener("click", prev);
-      if (nextBtn) nextBtn.addEventListener("click", next);
+    const goPrev = () => { current = (current - 1 + total) % total; render(); };
+    const goNext = () => { current = (current + 1) % total; render(); };
 
-      render();
+    if (pPrev) pPrev.addEventListener("click", goPrev);
+    if (pNext) pNext.addEventListener("click", goNext);
+
+    // swipe
+    let startX = 0;
+    if (stage) {
+      stage.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
+      stage.addEventListener("touchend", (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+        if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
+      }, { passive: true });
     }
+
+    render();
   }
 
   /* ============================================================
      NEWS SLIDER (HOME ONLY)
   ============================================================ */
-
   const newsSlider = document.querySelector(".news-slider");
   if (newsSlider) {
-    const pages = Array.from(newsSlider.querySelectorAll(".news-page"));
     const track = newsSlider.querySelector(".news-track");
-    const prevBtn = newsSlider.querySelector(".news-prev");
-    const nextBtn = newsSlider.querySelector(".news-next");
+    const pages = Array.from(newsSlider.querySelectorAll(".news-page"));
+    const nPrev = newsSlider.querySelector(".news-prev");
+    const nNext = newsSlider.querySelector(".news-next");
 
     if (track && pages.length) {
-      let index = pages.findIndex((p) => p.classList.contains("is-active"));
-      if (index < 0) index = 0;
+      let current = pages.findIndex((p) => p.classList.contains("is-active"));
+      if (current < 0) current = 0;
 
       const render = () => {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        pages.forEach((p, i) => p.classList.toggle("is-active", i === index));
+        pages.forEach((p, i) => p.classList.toggle("is-active", i === current));
+        track.style.transform = `translateX(-${current * 100}%)`;
       };
 
-      const prev = () => {
-        index = (index - 1 + pages.length) % pages.length;
-        render();
-      };
+      const goPrev = () => { current = (current - 1 + pages.length) % pages.length; render(); };
+      const goNext = () => { current = (current + 1) % pages.length; render(); };
 
-      const next = () => {
-        index = (index + 1) % pages.length;
-        render();
-      };
+      if (nPrev) nPrev.addEventListener("click", goPrev);
+      if (nNext) nNext.addEventListener("click", goNext);
 
-      if (prevBtn) prevBtn.addEventListener("click", prev);
-      if (nextBtn) nextBtn.addEventListener("click", next);
+      // swipe
+      let startX = 0;
+      newsSlider.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
+      newsSlider.addEventListener("touchend", (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+        if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
+      }, { passive: true });
 
       render();
     }
