@@ -16,10 +16,10 @@
 
       <!-- Language switch -->
       <nav class="lang-switch" aria-label="Language switch">
-        <a href="#" data-lang="ko">KOR</a>
-        <a href="#" data-lang="en" class="is-active">ENG</a>
-        <a href="#" data-lang="es">ESP</a>
-        <a href="#" data-lang="nl">DUTCH</a>
+        <a href="#" data-lang="ko" data-i18n="lang_ko">Korean</a>
+        <a href="#" data-lang="en" data-i18n="lang_en" class="is-active">English</a>
+        <a href="#" data-lang="es" data-i18n="lang_es">Español</a>
+        <a href="#" data-lang="nl" data-i18n="lang_nl">Dutch</a>
       </nav>
 
       <!-- Hamburger (3 lines) -->
@@ -30,12 +30,12 @@
 
     <!-- Overlay navigation -->
     <nav class="overlay-nav" aria-hidden="true">
-      <a href="./about.html">About</a>
-      <a href="./business.html">Business</a>
-      <a href="./projects.html">Projects</a>
-      <a href="./news.html">News</a>
-      <a href="./careers.html">Careers</a>
-      <a href="./contact.html">Contact</a>
+      <a href="./about.html" data-i18n="nav_about">About</a>
+      <a href="./business.html" data-i18n="nav_business">Business</a>
+      <a href="./projects.html" data-i18n="nav_projects">Projects</a>
+      <a href="./news.html" data-i18n="nav_news">News</a>
+      <a href="./careers.html" data-i18n="nav_careers">Careers</a>
+      <a href="./contact.html" data-i18n="nav_contact">Contact</a>
     </nav>
   </header>
 
@@ -49,7 +49,6 @@
           style="background-image:url('assets/images/hero-1.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <!-- ✅ i18n hooks -->
             <h1 class="hero-title" data-i18n-html="hero1_title">Prioritize nature<br>and people</h1>
             <p class="hero-subtitle" data-i18n="hero1_sub">We create a future where people and nature are together</p>
             <a href="./about.html" class="hero-go" data-i18n="go">GO</a>
@@ -61,7 +60,6 @@
           style="background-image:url('assets/images/hero-2.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <!-- ✅ i18n hooks -->
             <h1 class="hero-title" data-i18n-html="hero2_title">Growth and<br>Innovation</h1>
             <p class="hero-subtitle" data-i18n="hero2_sub">Take a look at Dohwa Engineering's history of endless growth and innovation</p>
             <a href="./about.html" class="hero-go" data-i18n="go">GO</a>
@@ -73,7 +71,6 @@
           style="background-image:url('assets/images/hero-3.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <!-- ✅ i18n hooks -->
             <h1 class="hero-title" data-i18n-html="hero3_title">Challenge<br>to the world</h1>
             <p class="hero-subtitle" data-i18n="hero3_sub">DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.</p>
             <a href="./business.html" class="hero-go" data-i18n="go">GO</a>
@@ -88,7 +85,7 @@
 
       <!-- Scroll hint -->
       <div class="hero-scroll" aria-hidden="true">
-        <span>Scroll</span>
+        <span data-i18n="scroll">Scroll</span>
         <i></i>
       </div>
     </section>
@@ -96,8 +93,8 @@
     <!-- BUSINESS section -->
     <section class="home-business" aria-label="Business overview">
       <div class="container">
-        <h2 class="home-business__title">BUSINESS</h2>
-        <p class="home-business__desc">
+        <h2 class="home-business__title" data-i18n="sec_business">BUSINESS</h2>
+        <p class="home-business__desc" data-i18n="business_desc">
           DOHWA, the unrivaled multi-disciplinary engineering firm, continues to tackle global challenges.
         </p>
 
@@ -108,12 +105,12 @@
               <img src="assets/images/water-sector.png" alt="Water Sector illustration">
             </div>
             <div class="biz-meta">
-              <p class="biz-eyebrow">Water Sector</p>
-              <h3 class="biz-name">Water Sector <span class="biz-arrow">›</span></h3>
+              <p class="biz-eyebrow" data-i18n="biz1_eyebrow">Water Sector</p>
+              <h3 class="biz-name" data-i18n="biz1_title">Water Sector <span class="biz-arrow">›</span></h3>
               <ul class="biz-list">
-                <li>Water Supply</li>
-                <li>Sewerage</li>
-                <li>Rivers/water resource development/dams/hydropower</li>
+                <li data-i18n="biz1_li1">Water Supply</li>
+                <li data-i18n="biz1_li2">Sewerage</li>
+                <li data-i18n="biz1_li3">Rivers/water resource development/dams/hydropower</li>
               </ul>
             </div>
           </a>
@@ -124,12 +121,12 @@
               <img src="assets/images/urban-sector.png" alt="Urban Sector illustration">
             </div>
             <div class="biz-meta">
-              <p class="biz-eyebrow">Urban Sector</p>
-              <h3 class="biz-name">Urban Sector <span class="biz-arrow">›</span></h3>
+              <p class="biz-eyebrow" data-i18n="biz2_eyebrow">Urban Sector</p>
+              <h3 class="biz-name" data-i18n="biz2_title">Urban Sector <span class="biz-arrow">›</span></h3>
               <ul class="biz-list">
-                <li>Urban planning and development</li>
-                <li>Landscape/Leisure</li>
-                <li>Smart cities</li>
+                <li data-i18n="biz2_li1">Urban planning and development</li>
+                <li data-i18n="biz2_li2">Landscape/Leisure</li>
+                <li data-i18n="biz2_li3">Smart cities</li>
               </ul>
             </div>
           </a>
@@ -137,94 +134,86 @@
       </div>
     </section>
 
-    <!-- ✅ PROJECT (products) section with “book effect” slider -->
+    <!-- PROJECT section -->
     <section class="home-projects" aria-label="Projects">
       <div class="container">
         <div class="home-projects__head">
-          <h2 class="home-projects__title">PROJECT</h2>
-          <p class="home-projects__desc">DOHWA continues to tackle global challenges.</p>
+          <h2 class="home-projects__title" data-i18n="sec_project">PROJECT</h2>
+          <p class="home-projects__desc" data-i18n="project_desc">DOHWA continues to tackle global challenges.</p>
         </div>
 
         <div class="proj-slider" data-total="8">
           <div class="proj-stage">
             <div class="proj-track">
 
-              <!-- 1 -->
               <article class="proj-card is-active">
                 <div class="proj-media">
                   <img src="assets/images/project-1.jpg" alt="Project 1">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj1">
                   Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Le Thuy, Vietnam
                 </p>
               </article>
 
-              <!-- 2 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-2.jpg" alt="Project 2">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj2">
                   Engineering, Procurement, Construction for SP1 Hatsukaichi Solar PV Plant Project
                 </p>
               </article>
 
-              <!-- 3 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-3.jpg" alt="Project 3">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj3">
                   EPC construction for Sinji wind farm development project
                 </p>
               </article>
 
-              <!-- 4 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-4.jpg" alt="Project 4">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj4">
                   Engineering, Procurement and Construction for Photovoltaic (PV) Plant Construction Project in Iseshima, Japan
                 </p>
               </article>
 
-              <!-- 5 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-5.jpg" alt="Project 5">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj5">
                   On-land solar power promotion service for K-water wide-area water treatment plant carbon neutral (Net-Zero) Project
                 </p>
               </article>
 
-              <!-- 6 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-6.jpg" alt="Project 6">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj6">
                   Preliminary design for opening the east side access road Construction Project in Daedeok Innopolis
                 </p>
               </article>
 
-              <!-- 7 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-7.jpg" alt="Project 7">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj7">
                   Preliminary and detailed design for structural improvement of Nodeul-ro Road
                 </p>
               </article>
 
-              <!-- 8 -->
               <article class="proj-card">
                 <div class="proj-media">
                   <img src="assets/images/project-8.jpg" alt="Project 8">
                 </div>
-                <p class="proj-text">
+                <p class="proj-text" data-i18n="proj8">
                   Feasibility Study and Master plan for Saemangeum new airport construction project
                 </p>
               </article>
@@ -232,16 +221,13 @@
             </div>
           </div>
 
-          <!-- Controls like inspo: arrows + 1/8 -->
           <div class="proj-controls" aria-label="Project slider controls">
             <button class="proj-arrow proj-arrow--left" type="button" aria-label="Previous">‹</button>
-
             <div class="proj-counter" aria-label="Slide counter">
               <span id="projIndex">1</span>
               <span class="proj-slash">/</span>
               <span id="projTotal">8</span>
             </div>
-
             <button class="proj-arrow proj-arrow--right" type="button" aria-label="Next">›</button>
           </div>
         </div>
@@ -249,12 +235,12 @@
       </div>
     </section>
 
-    <!-- ===== NEWS section (2-page slider: 2025/2024 then 2023/2022) ===== -->
+    <!-- NEWS section -->
     <section class="home-news" aria-label="News">
       <div class="container">
         <div class="home-news__head">
-          <h2 class="home-news__title">NEWS</h2>
-          <p class="home-news__desc">
+          <h2 class="home-news__title" data-i18n="sec_news">NEWS</h2>
+          <p class="home-news__desc" data-i18n="news_desc">
             News about Dohwa’s efforts to help develop regions and the nation.
           </p>
         </div>
@@ -262,43 +248,40 @@
         <div class="news-slider" aria-label="News slider">
           <div class="news-track">
 
-            <!-- SLIDE 1 -->
             <div class="news-page is-active">
               <div class="news-grid">
                 <article class="news-card">
-                  <p class="news-tag">Awards</p>
-                  <h3>2025 ENR The Top<br>Global & International<br>Design Firms List</h3>
-                  <a href="#" class="news-link">Details</a>
+                  <p class="news-tag" data-i18n="news_tag_awards">Awards</p>
+                  <h3 data-i18n-html="news_2025">2025 ENR The Top<br>Global & International<br>Design Firms List</h3>
+                  <a href="#" class="news-link" data-i18n="details">Details</a>
                 </article>
 
                 <article class="news-card">
-                  <p class="news-tag">Awards</p>
-                  <h3>2024 ENR The Top<br>Global & International<br>Design Firms List</h3>
-                  <a href="#" class="news-link">Details</a>
+                  <p class="news-tag" data-i18n="news_tag_awards">Awards</p>
+                  <h3 data-i18n-html="news_2024">2024 ENR The Top<br>Global & International<br>Design Firms List</h3>
+                  <a href="#" class="news-link" data-i18n="details">Details</a>
                 </article>
               </div>
             </div>
 
-            <!-- SLIDE 2 -->
             <div class="news-page">
               <div class="news-grid">
                 <article class="news-card">
-                  <p class="news-tag">Awards</p>
-                  <h3>2023 ENR The Top<br>Global & International<br>Design Firms List</h3>
-                  <a href="#" class="news-link">Details</a>
+                  <p class="news-tag" data-i18n="news_tag_awards">Awards</p>
+                  <h3 data-i18n-html="news_2023">2023 ENR The Top<br>Global & International<br>Design Firms List</h3>
+                  <a href="#" class="news-link" data-i18n="details">Details</a>
                 </article>
 
                 <article class="news-card">
-                  <p class="news-tag">Awards</p>
-                  <h3>2022 ENR The Top<br>Global & International<br>Design Firms List</h3>
-                  <a href="#" class="news-link">Details</a>
+                  <p class="news-tag" data-i18n="news_tag_awards">Awards</p>
+                  <h3 data-i18n-html="news_2022">2022 ENR The Top<br>Global & International<br>Design Firms List</h3>
+                  <a href="#" class="news-link" data-i18n="details">Details</a>
                 </article>
               </div>
             </div>
 
           </div>
 
-          <!-- controls -->
           <div class="news-controls" aria-label="News slider controls">
             <button class="news-arrow news-prev" type="button" aria-label="Previous">‹</button>
             <button class="news-arrow news-next" type="button" aria-label="Next">›</button>
@@ -307,27 +290,27 @@
       </div>
     </section>
 
-    <!-- ===== CAREER (fade-in on scroll) ===== -->
+    <!-- CAREER -->
     <section class="home-career reveal" aria-label="Career">
       <div class="container">
         <div class="career-hero">
           <img class="career-bg" src="assets/images/career-bg.jpg" alt="DOHWA team" />
 
           <div class="career-overlay">
-            <p class="career-kicker">CAREER</p>
-            <h2 class="career-title">We welcome creative individuals full of passion and enthusiasm.</h2>
+            <p class="career-kicker" data-i18n="career_kicker">CAREER</p>
+            <h2 class="career-title" data-i18n="career_title">We welcome creative individuals full of passion and enthusiasm.</h2>
 
-            <p class="career-desc">
+            <p class="career-desc" data-i18n-html="career_desc">
               "Human-centered thinking", which puts people first, has been the driving force behind our management for about 60 years, and<br>
               "progressive action" and<br>
               "creative thinking" are forces that propel us forward as we pioneer the future.
             </p>
 
             <div class="career-cta">
-              <a class="career-btn" href="./recruitment-information.html">
+              <a class="career-btn" href="./recruitment-information.html" data-i18n-html="career_btn1">
                 Go to Recruitment Information <span class="career-arrow">›</span>
               </a>
-              <a class="career-btn" href="./recruitment-website.html">
+              <a class="career-btn" href="./recruitment-website.html" data-i18n-html="career_btn2">
                 Go to Recruitment Website <span class="career-arrow">›</span>
               </a>
             </div>
@@ -336,23 +319,23 @@
       </div>
     </section>
 
-    <!-- ===== BIG WORDMARK SLIDE (DOHWA ENGINEERING) ===== -->
+    <!-- WORDMARK -->
     <section class="home-wordmark" aria-label="DOHWA wordmark">
       <div class="wordmark-line">
-        <div class="wordmark-track">
+        <div class="wordmark-track" data-i18n="wordmark">
           DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING&nbsp;&nbsp;DOHWA&nbsp;&nbsp;ENGINEERING
         </div>
       </div>
     </section>
 
-    <!-- ===== SUSTAINABLE MANAGEMENT (image + text + boxes) ===== -->
+    <!-- SUSTAINABLE MANAGEMENT -->
     <section class="home-sustain reveal" aria-label="Sustainable Management">
       <div class="sustain-hero">
         <img class="sustain-bg" src="assets/images/sustain-bg.jpg" alt="Sustainable Management background" />
 
         <div class="sustain-overlay">
-          <h2 class="sustain-title">Sustainable Management</h2>
-          <p class="sustain-desc">
+          <h2 class="sustain-title" data-i18n="sustain_title">Sustainable Management</h2>
+          <p class="sustain-desc" data-i18n-html="sustain_desc">
             DOHWA will continue to provide the best service<br />
             based on its best technology and quality for both<br />
             clients and partners
@@ -362,17 +345,17 @@
 
       <div class="container">
         <div class="sustain-boxes">
-          <a class="sustain-box reveal-drop" href="#">
+          <a class="sustain-box reveal-drop" href="#" data-i18n-html="sustain_box1">
             <span>Management</span><br />
             <span>through Sharing</span>
           </a>
 
-          <a class="sustain-box reveal-drop" href="#">
+          <a class="sustain-box reveal-drop" href="#" data-i18n-html="sustain_box2">
             <span>Safety and Quality</span><br />
             <span>Management</span>
           </a>
 
-          <a class="sustain-box reveal-drop" href="#">
+          <a class="sustain-box reveal-drop" href="#" data-i18n-html="sustain_box3">
             <span>Ethics and</span><br />
             <span>Compliance</span><br />
             <span>Management</span>
@@ -383,14 +366,14 @@
 
   </main>
 
-  <!-- ✅ FOOTER MUST BE AFTER MAIN -->
+  <!-- FOOTER -->
   <footer class="dohwa-footer" aria-label="Footer">
     <div class="container">
 
       <details class="family-site">
-        <summary>Family Site</summary>
+        <summary data-i18n="family_site">Family Site</summary>
         <div class="family-panel">
-          <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener">DOHWA Official</a>
+          <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener" data-i18n="family_official">DOHWA Official</a>
         </div>
       </details>
 
@@ -405,19 +388,19 @@
         </div>
       </div>
 
-      <div class="footer-address">
+      <div class="footer-address" data-i18n="footer_address">
         12 Sejong-daero 12-gil, Jung District, Seoul
       </div>
 
       <div class="footer-links">
-        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link" data-i18n="privacy">Privacy Policy</a>
         <span class="footer-sep">|</span>
-        <a href="#" class="footer-link">Ethics Hotline</a>
+        <a href="#" class="footer-link" data-i18n="ethics">Ethics Hotline</a>
       </div>
 
       <div class="footer-bottom">
-        <div>DOHWA Engineering Co., LTD. All RIGHTS RESERVED</div>
-        <a class="footer-top" href="#top" aria-label="Back to top">TOP</a>
+        <div data-i18n="rights">DOHWA Engineering Co., LTD. All RIGHTS RESERVED</div>
+        <a class="footer-top" href="#top" aria-label="Back to top" data-i18n="top">TOP</a>
       </div>
 
     </div>
