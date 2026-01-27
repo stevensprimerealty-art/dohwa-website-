@@ -10,139 +10,115 @@
 
 <body id="top" class="page-about">
 
-<!-- ================= HEADER (SAME AS MAIN PAGE) ================= -->
-<header class="hero-header">
-  <div class="hero-header__inner">
-    <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
+  <!-- ================= HEADER (SAME AS MAIN PAGE) ================= -->
+  <header class="hero-header">
+    <div class="hero-header__inner">
+      <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
 
-    <!-- Language switch (EXACT same structure as main page) -->
-    <nav class="lang-switch" aria-label="Language switch">
-      <a href="#" data-lang="ko" data-i18n="lang_ko">Korean</a>
-      <a href="#" data-lang="en" data-i18n="lang_en" class="is-active">English</a>
-      <a href="#" data-lang="es" data-i18n="lang_es">Español</a>
-      <a href="#" data-lang="nl" data-i18n="lang_nl">Dutch</a>
+      <nav class="lang-switch" aria-label="Language switch">
+        <a href="#" data-lang="ko" data-i18n="lang_ko">Korean</a>
+        <a href="#" data-lang="en" data-i18n="lang_en" class="is-active">English</a>
+        <a href="#" data-lang="es" data-i18n="lang_es">Español</a>
+        <a href="#" data-lang="nl" data-i18n="lang_nl">Dutch</a>
+      </nav>
+
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="overlay-nav" aria-hidden="true">
+      <a href="./about.html" data-i18n="nav_about">About</a>
+      <a href="./business.html" data-i18n="nav_business">Business</a>
+      <a href="./projects.html" data-i18n="nav_projects">Projects</a>
+      <a href="./news.html" data-i18n="nav_news">News</a>
+      <a href="./careers.html" data-i18n="nav_careers">Careers</a>
+      <a href="./contact.html" data-i18n="nav_contact">Contact</a>
     </nav>
+  </header>
 
-    <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+  <main>
 
-  <!-- Overlay nav -->
-  <nav class="overlay-nav" aria-hidden="true">
-    <a href="./about.html" data-i18n="nav_about">About</a>
-    <a href="./business.html" data-i18n="nav_business">Business</a>
-    <a href="./projects.html" data-i18n="nav_projects">Projects</a>
-    <a href="./news.html" data-i18n="nav_news">News</a>
-    <a href="./careers.html" data-i18n="nav_careers">Careers</a>
-    <a href="./contact.html" data-i18n="nav_contact">Contact</a>
-  </nav>
-</header>
+    <!-- ================= ABOUT HERO (MATCHES INDEX HERO STYLE) ================= -->
+    <section class="hero-slider" aria-label="Company overview hero">
+      <div class="hero-slides">
+        <article
+          class="hero-slide is-active"
+          style="background-image:url('assets/images/about-hero.jpg'); background-position:center;"
+        >
+          <div class="hero-overlay"></div>
 
-<main>
+          <div class="hero-content">
+            <p class="hero-eyebrow" data-i18n="about_kicker">COMPANY OVERVIEW</p>
 
-  <!-- ================= ABOUT HERO (IMAGE + TEXT ON IMAGE) ================= -->
-  <section class="hero hero--static" aria-label="Company overview hero">
-    <div class="hero-slide is-active">
-      <!-- Replace image path if needed -->
-      <div class="hero-bg" style="background-image:url('assets/images/about-hero.jpg');"></div>
-
-      <div class="hero-content">
-        <p class="hero-eyebrow" data-i18n="about_kicker">COMPANY OVERVIEW</p>
-
-        <h1 class="hero-title" data-i18n-html="about_title">
-          DOHWA designs the world,<br />
-          and together we create the future
-        </h1>
+            <h1 class="hero-title" data-i18n-html="about_title">
+              DOHWA designs the world,<br />
+              and together we create the future
+            </h1>
+          </div>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================= OVERVIEW WRITE-UP (AFTER HERO) ================= -->
-  <section class="section section-about reveal">
-    <div class="container narrow">
+    <!-- ================= OVERVIEW WRITE-UP (AFTER HERO) ================= -->
+    <section class="section section-about reveal">
+      <div class="container narrow">
 
-      <h2 class="section-title" data-i18n="overview_heading">Overview</h2>
+        <h2 class="section-title" data-i18n="overview_heading">Overview</h2>
 
-      <div class="about-text" data-i18n-html="overview_body">
-        <p>
-          <strong>DOHWA Engineering Co., LTD.</strong> is South Korea's top-ranked
-          multi-disciplinary engineering consulting firm.
-        </p>
+        <!-- NOTE: This will be replaced by JS using overview_body -->
+        <div class="about-text" data-i18n-html="overview_body">
+          <!-- Fallback content if JS fails -->
+          <p><strong>DOHWA Engineering Co., LTD.</strong> is South Korea's top-ranked multi-disciplinary engineering consulting firm.</p>
+        </div>
 
-        <p>
-          DOHWA Engineering Co., LTD. is the Number 1 ranking multi-disciplinary
-          engineering consulting firm in South Korea that provides Planning,
-          Feasibility Studies, Design, Analysis, Testing, Supervision,
-          Commissioning, Evaluation/Assessment, and Consulting and Training
-          Services in all areas of Engineering such as the Water Supply and
-          Wastewater Treatment, Water Resources Management, Urban Planning, Road
-          Traffic, Structures, Harbor and Ports, Rail, Environmental Engineering,
-          etc.
-        </p>
+      </div>
+    </section>
 
-        <p>
-          DOHWA is also expanding its businesses to become the EPC services
-          provider that covers not only pure engineering areas such as Design and
-          Supervision but also the Design of Constructions, Procurement and Supply
-          of Materials, Construction Works, Commissioning, Permits and Licenses,
-          etc.
-        </p>
+  </main>
 
-        <p>
-          DOHWA is a global engineering company that has been the first-of-its-kind
-          in Korea, and is exceeding expectations by providing the best
-          engineering services to bring about a brighter future.
-        </p>
+  <!-- ================= FOOTER (MATCH INDEX STRUCTURE) ================= -->
+  <footer class="dohwa-footer" aria-label="Footer">
+    <div class="container">
+
+      <details class="family-site">
+        <summary data-i18n="family_site">Family Site</summary>
+        <div class="family-panel">
+          <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener" data-i18n="family_official">
+            DOHWA Official
+          </a>
+        </div>
+      </details>
+
+      <div class="footer-row">
+        <div class="footer-brand">DOHWA</div>
+
+        <div class="footer-social" aria-label="Social links">
+          <a class="soc" href="https://www.facebook.com/dohwaengineering" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a class="soc" href="https://www.linkedin.com/company/dohwa-engineering" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a class="soc" href="https://blog.naver.com/dohwa_official" target="_blank" rel="noopener" aria-label="Naver Blog">N</a>
+          <a class="soc" href="https://www.youtube.com/channel/UCUaAuOZcXXooHu7ddO_L03g" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        </div>
       </div>
 
-    </div>
-  </section>
-
-</main>
-
-<!-- ================= FOOTER (SAME AS MAIN PAGE) ================= -->
-<footer class="dohwa-footer">
-  <div class="container">
-
-    <details class="family-site">
-      <summary data-i18n="family_site">Family Site</summary>
-      <div class="family-panel">
-        <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener" data-i18n="family_official">
-          DOHWA Official
-        </a>
+      <div class="footer-address" data-i18n="footer_address">
+        12 Sejong-daero 12-gil, Jung District, Seoul
       </div>
-    </details>
 
-    <div class="footer-row">
-      <div class="footer-brand">DOHWA</div>
-
-      <div class="footer-social">
-        <a href="https://www.facebook.com/dohwaengineering" target="_blank" aria-label="Facebook">f</a>
-        <a href="https://www.linkedin.com/company/dohwa-engineering" target="_blank" aria-label="LinkedIn">in</a>
-        <a href="https://blog.naver.com/dohwa_official" target="_blank" aria-label="Naver Blog">N</a>
-        <a href="https://www.youtube.com/channel/UCUaAuOZcXXooHu7ddO_L03g" target="_blank" aria-label="YouTube">▶</a>
+      <div class="footer-links">
+        <a href="#" class="footer-link" data-i18n="privacy">Privacy Policy</a>
+        <span class="footer-sep">|</span>
+        <a href="#" class="footer-link" data-i18n="ethics">Ethics Hotline</a>
       </div>
+
+      <div class="footer-bottom">
+        <div data-i18n="rights">DOHWA Engineering Co., LTD. All RIGHTS RESERVED</div>
+        <a href="#top" class="footer-top" aria-label="Back to top" data-i18n="top">TOP</a>
+      </div>
+
     </div>
+  </footer>
 
-    <div class="footer-address" data-i18n="footer_address">
-      12 Sejong-daero 12-gil, Jung District, Seoul
-    </div>
-
-    <div class="footer-links">
-      <a href="#" data-i18n="privacy">Privacy Policy</a>
-      <span>|</span>
-      <a href="#" data-i18n="ethics">Ethics Hotline</a>
-    </div>
-
-    <div class="footer-bottom">
-      <span data-i18n="rights">DOHWA Engineering Co., LTD. All RIGHTS RESERVED</span>
-      <a href="#top" class="footer-top" data-i18n="top">TOP</a>
-    </div>
-
-  </div>
-</footer>
-
-<script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
