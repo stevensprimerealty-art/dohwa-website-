@@ -11,30 +11,33 @@
 <body class="home" id="top">
   <!-- HERO HEADER (over the hero like inspo) -->
   <header class="hero-header">
-  <div class="hero-header__inner">
-    <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
+    <div class="hero-header__inner">
+      <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
 
-<!-- Language switch -->
-<nav class="lang-switch" aria-label="Language switch">
-  <a href="#" data-lang="ko">KOR</a>
-  <a href="#" data-lang="en" class="is-active">ENG</a>
-  <a href="#" data-lang="es">ESP</a>
-  <a href="#" data-lang="nl">DUTCH</a>
-</nav>
-    <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+      <!-- Language switch -->
+      <nav class="lang-switch" aria-label="Language switch">
+        <a href="#" data-lang="ko">KOR</a>
+        <a href="#" data-lang="en" class="is-active">ENG</a>
+        <a href="#" data-lang="es">ESP</a>
+        <a href="#" data-lang="nl">DUTCH</a>
+      </nav>
 
-  <nav class="overlay-nav" aria-hidden="true">
-    <a href="./about.html">About</a>
-    <a href="./business.html">Business</a>
-    <a href="./projects.html">Projects</a>
-    <a href="./news.html">News</a>
-    <a href="./careers.html">Careers</a>
-    <a href="./contact.html">Contact</a>
-  </nav>
-</header>
+      <!-- Hamburger (3 lines) -->
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Overlay navigation -->
+    <nav class="overlay-nav" aria-hidden="true">
+      <a href="./about.html">About</a>
+      <a href="./business.html">Business</a>
+      <a href="./projects.html">Projects</a>
+      <a href="./news.html">News</a>
+      <a href="./careers.html">Careers</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </header>
 
   <main>
     <!-- FULLSCREEN HERO SLIDER (3 slides, fade, arrows, centered text + GO below) -->
@@ -46,9 +49,10 @@
           style="background-image:url('assets/images/hero-1.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <h1 class="hero-title">Prioritize nature<br>and people</h1>
-            <p class="hero-subtitle">We create a future where people and nature are together</p>
-            <a href="./about.html" class="hero-go">GO</a>
+            <!-- ✅ i18n hooks -->
+            <h1 class="hero-title" data-i18n-html="hero1_title">Prioritize nature<br>and people</h1>
+            <p class="hero-subtitle" data-i18n="hero1_sub">We create a future where people and nature are together</p>
+            <a href="./about.html" class="hero-go" data-i18n="go">GO</a>
           </div>
         </article>
 
@@ -57,9 +61,10 @@
           style="background-image:url('assets/images/hero-2.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <h1 class="hero-title">Growth and<br>Innovation</h1>
-            <p class="hero-subtitle">Take a look at Dohwa Engineering's history of endless growth and innovation</p>
-            <a href="./about.html" class="hero-go">GO</a>
+            <!-- ✅ i18n hooks -->
+            <h1 class="hero-title" data-i18n-html="hero2_title">Growth and<br>Innovation</h1>
+            <p class="hero-subtitle" data-i18n="hero2_sub">Take a look at Dohwa Engineering's history of endless growth and innovation</p>
+            <a href="./about.html" class="hero-go" data-i18n="go">GO</a>
           </div>
         </article>
 
@@ -68,9 +73,10 @@
           style="background-image:url('assets/images/hero-3.jpg'); background-position:center;">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <h1 class="hero-title">Challenge<br>to the world</h1>
-            <p class="hero-subtitle">DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.</p>
-            <a href="./business.html" class="hero-go">GO</a>
+            <!-- ✅ i18n hooks -->
+            <h1 class="hero-title" data-i18n-html="hero3_title">Challenge<br>to the world</h1>
+            <p class="hero-subtitle" data-i18n="hero3_sub">DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.</p>
+            <a href="./business.html" class="hero-go" data-i18n="go">GO</a>
           </div>
         </article>
 
@@ -301,7 +307,7 @@
       </div>
     </section>
 
-        <!-- ===== CAREER (fade-in on scroll) ===== -->
+    <!-- ===== CAREER (fade-in on scroll) ===== -->
     <section class="home-career reveal" aria-label="Career">
       <div class="container">
         <div class="career-hero">
