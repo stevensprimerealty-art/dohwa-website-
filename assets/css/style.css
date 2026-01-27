@@ -692,7 +692,7 @@ body.is-loaded .hamburger span{
 .reveal-drop{
   opacity:0;
   transform: translateY(22px);
-  transition: opacity 650ms ease, transform 650ms ease;
+  transition: opacity 700ms ease, transform 700ms ease;
 }
 .reveal-drop.is-in{
   opacity:1;
