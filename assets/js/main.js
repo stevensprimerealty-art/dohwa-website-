@@ -13,6 +13,69 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
     // ----------------------------------------------------------
+// Language switch (KOR / ENG / ESP / DUTCH)
+// ----------------------------------------------------------
+const LANG_KEY = "dohwa_lang";
+
+// 1) your translations (edit any words you want)
+const i18n = {
+  en: {
+    hero_title: "Prioritize nature<br>and people",
+    hero_sub: "We create a future where people and nature are together",
+    go: "GO"
+  },
+  ko: {
+    hero_title: "자연과 사람을<br>우선합니다",
+    hero_sub: "사람과 자연이 함께하는 미래를 만듭니다",
+    go: "GO"
+  },
+  es: {
+    hero_title: "Prioriza la naturaleza<br>y las personas",
+    hero_sub: "Creamos un futuro donde las personas y la naturaleza están juntas",
+    go: "GO"
+  },
+  nl: {
+    hero_title: "Geef prioriteit aan natuur<br>en mensen",
+    hero_sub: "We creëren een toekomst waarin mensen en natuur samen zijn",
+    go: "GO"
+  }
+};
+
+const langNav = document.querySelector(".lang-switch");
+const langLinks = Array.from(document.querySelectorAll(".lang-switch a"));
+
+const applyLang = (lang) => {
+  const dict = i18n[lang] || i18n.en;
+
+  // Update all elements that have data-i18n="key"
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (!key) return;
+    if (dict[key] == null) return;
+    el.innerHTML = dict[key]; // innerHTML so <br> works
+  });
+
+  // Active state
+  langLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.lang === lang));
+
+  // Save
+  localStorage.setItem(LANG_KEY, lang);
+};
+
+// Click handling
+if (langNav) {
+  langNav.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-lang]");
+    if (!a) return;
+    e.preventDefault();
+    applyLang(a.dataset.lang);
+  });
+}
+
+// Load saved lang (default = en)
+applyLang(localStorage.getItem(LANG_KEY) || "en");
+
+    // ----------------------------------------------------------
     // Reveal on scroll (CAREER + SUSTAIN + boxes etc.)
     // Use:
     //   class="reveal"       -> normal fade up
