@@ -13,73 +13,115 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
     // ----------------------------------------------------------
-// Language switch (KOR / ENG / ESP / DUTCH)
-// ----------------------------------------------------------
-const LANG_KEY = "dohwa_lang";
+    // Language switch (KOR / ENG / ESP / DUTCH)
+    // IMPORTANT:
+    // - data-i18n="key" uses text (innerHTML)
+    // - data-i18n-html="key" uses HTML (innerHTML)
+    // Your HTML uses: hero1_title, hero1_sub, hero2_title, hero2_sub, hero3_title, hero3_sub, go
+    // ----------------------------------------------------------
+    const LANG_KEY = "dohwa_lang";
 
-// 1) your translations (edit any words you want)
-const i18n = {
-  en: {
-    hero_title: "Prioritize nature<br>and people",
-    hero_sub: "We create a future where people and nature are together",
-    go: "GO"
-  },
-  ko: {
-    hero_title: "자연과 사람을<br>우선합니다",
-    hero_sub: "사람과 자연이 함께하는 미래를 만듭니다",
-    go: "GO"
-  },
-  es: {
-    hero_title: "Prioriza la naturaleza<br>y las personas",
-    hero_sub: "Creamos un futuro donde las personas y la naturaleza están juntas",
-    go: "GO"
-  },
-  nl: {
-    hero_title: "Geef prioriteit aan natuur<br>en mensen",
-    hero_sub: "We creëren een toekomst waarin mensen en natuur samen zijn",
-    go: "GO"
-  }
-};
+    const i18n = {
+      en: {
+        hero1_title: "Prioritize nature<br>and people",
+        hero1_sub: "We create a future where people and nature are together",
+        hero2_title: "Growth and<br>Innovation",
+        hero2_sub: "Take a look at Dohwa Engineering's history of endless growth and innovation",
+        hero3_title: "Challenge<br>to the world",
+        hero3_sub:
+          "DOHWA, the unrivaled multidisciplinary engineering firm, continues to tackle global challenges.",
+        go: "GO",
+      },
+      ko: {
+        hero1_title: "자연과 사람을<br>우선합니다",
+        hero1_sub: "사람과 자연이 함께하는 미래를 만듭니다",
+        hero2_title: "성장과<br>혁신",
+        hero2_sub: "도화엔지니어링의 끊임없는 성장과 혁신의 역사를 확인해보세요",
+        hero3_title: "세계를 향한<br>도전",
+        hero3_sub: "도화는 독보적인 종합 엔지니어링 기업으로서 글로벌 과제에 도전합니다.",
+        go: "GO",
+      },
+      es: {
+        hero1_title: "Prioriza la naturaleza<br>y las personas",
+        hero1_sub: "Creamos un futuro donde las personas y la naturaleza están juntas",
+        hero2_title: "Crecimiento e<br>Innovación",
+        hero2_sub:
+          "Conoce la historia de crecimiento e innovación constante de Dohwa Engineering",
+        hero3_title: "Desafío<br>al mundo",
+        hero3_sub:
+          "DOHWA, la firma multidisciplinaria líder, continúa afrontando desafíos globales.",
+        go: "IR",
+      },
+      nl: {
+        hero1_title: "Prioriteit voor natuur<br>en mensen",
+        hero1_sub: "We creëren een toekomst waarin mensen en natuur samen zijn",
+        hero2_title: "Groei en<br>Innovatie",
+        hero2_sub:
+          "Bekijk de geschiedenis van eindeloze groei en innovatie van Dohwa Engineering",
+        hero3_title: "Uitdaging<br>voor de wereld",
+        hero3_sub:
+          "DOHWA, het toonaangevende multidisciplinaire ingenieursbureau, blijft wereldwijde uitdagingen aanpakken.",
+        go: "GA",
+      },
+    };
 
-const langNav = document.querySelector(".lang-switch");
-const langLinks = Array.from(document.querySelectorAll(".lang-switch a"));
+    const langNav = document.querySelector(".lang-switch");
+    const langLinks = Array.from(document.querySelectorAll(".lang-switch a[data-lang]"));
 
-const applyLang = (lang) => {
-  const dict = i18n[lang] || i18n.en;
+    const applyLang = (lang) => {
+      const dict = i18n[lang] || i18n.en;
 
-  // Update all elements that have data-i18n="key"
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.getAttribute("data-i18n");
-    if (!key) return;
-    if (dict[key] == null) return;
-    el.innerHTML = dict[key]; // innerHTML so <br> works
-  });
+      // data-i18n (text keys)
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (!key) return;
+        if (dict[key] == null) return;
+        el.innerHTML = dict[key];
+      });
 
-  // Active state
-  langLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.lang === lang));
+      // data-i18n-html (html keys)
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-html");
+        if (!key) return;
+        if (dict[key] == null) return;
+        el.innerHTML = dict[key];
+      });
 
-  // Save
-  localStorage.setItem(LANG_KEY, lang);
-};
+      // Active state
+      langLinks.forEach((a) => a.classList.toggle("is-active", a.dataset.lang === lang));
 
-// Click handling
-if (langNav) {
-  langNav.addEventListener("click", (e) => {
-    const a = e.target.closest("a[data-lang]");
-    if (!a) return;
-    e.preventDefault();
-    applyLang(a.dataset.lang);
-  });
-}
+      // Save
+      try {
+        localStorage.setItem(LANG_KEY, lang);
+      } catch (e) {
+        // ignore
+      }
+    };
 
-// Load saved lang (default = en)
-applyLang(localStorage.getItem(LANG_KEY) || "en");
+    // Click handling
+    if (langNav) {
+      langNav.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-lang]");
+        if (!a) return;
+        e.preventDefault();
+        applyLang(a.dataset.lang);
+      });
+    }
+
+    // Load saved lang (default = en)
+    let saved = "en";
+    try {
+      saved = localStorage.getItem(LANG_KEY) || "en";
+    } catch (e) {
+      saved = "en";
+    }
+    applyLang(saved);
 
     // ----------------------------------------------------------
     // Reveal on scroll (CAREER + SUSTAIN + boxes etc.)
     // Use:
     //   class="reveal"       -> normal fade up
-    //   class="reveal-drop"  -> drop-in (your boxes)
+    //   class="reveal-drop"  -> drop-in
     // JS will add class "is-in" when visible
     // ----------------------------------------------------------
     const revealTargets = Array.from(
@@ -100,7 +142,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
 
       revealTargets.forEach((el) => io.observe(el));
     } else {
-      // fallback (old browsers)
       revealTargets.forEach((el) => el.classList.add("is-in"));
     }
 
@@ -124,13 +165,11 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         overlay.setAttribute("aria-hidden", String(!isOpen));
       });
 
-      // Close overlay when a link is clicked
       overlay.addEventListener("click", (e) => {
         const target = e.target;
         if (target && target.tagName === "A") closeOverlay();
       });
 
-      // Close overlay when tapping outside
       document.addEventListener("click", (e) => {
         const target = e.target;
         const isOpen = overlay.classList.contains("is-open");
@@ -139,7 +178,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         if (isOpen && !clickedInsideOverlay && !clickedBurger) closeOverlay();
       });
 
-      // Close on ESC
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeOverlay();
       });
@@ -160,7 +198,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         slides.forEach((s) => s.classList.remove("is-active"));
         slides[i].classList.add("is-active");
 
-        // Re-trigger content fade per slide smoothly
         const content = slides[i].querySelector(".hero-content");
         if (content) {
           content.style.opacity = "0";
@@ -181,7 +218,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
       if (prevBtn) prevBtn.addEventListener("click", prev);
       if (nextBtn) nextBtn.addEventListener("click", next);
 
-      // Keyboard controls (only when overlay menu is not open)
       document.addEventListener("keydown", (e) => {
         const overlayOpen = overlay && overlay.classList.contains("is-open");
         if (overlayOpen) return;
@@ -189,7 +225,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         if (e.key === "ArrowRight") next();
       });
 
-      // Auto-advance
       const AUTO = true;
       const AUTO_MS = 6500;
       let timer = null;
@@ -207,7 +242,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
 
       startAuto();
 
-      // Pause/restart auto on manual click
       [prevBtn, nextBtn].forEach((btn) => {
         if (!btn) return;
         btn.addEventListener("click", () => {
@@ -216,7 +250,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         });
       });
 
-      // Pause auto when tab is hidden, resume when visible
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) stopAuto();
         else startAuto();
@@ -270,7 +303,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
       if (pPrev) pPrev.addEventListener("click", goPrev);
       if (pNext) pNext.addEventListener("click", goNext);
 
-      // Swipe on mobile
       let startX = 0;
       if (stage) {
         stage.addEventListener(
@@ -307,9 +339,7 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         if (current < 0) current = 0;
 
         const render = () => {
-          pages.forEach((p, i) =>
-            p.classList.toggle("is-active", i === current)
-          );
+          pages.forEach((p, i) => p.classList.toggle("is-active", i === current));
           track.style.transform = `translateX(-${current * 100}%)`;
         };
 
@@ -326,7 +356,6 @@ applyLang(localStorage.getItem(LANG_KEY) || "en");
         if (nPrev) nPrev.addEventListener("click", goPrev);
         if (nNext) nNext.addEventListener("click", goNext);
 
-        // Swipe
         let startX = 0;
         newsSlider.addEventListener(
           "touchstart",
