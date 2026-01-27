@@ -1,38 +1,49 @@
 // assets/js/main.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Footer year (works on all pages)
+  // Footer year (works on any page IF you have <span id="year"></span>)
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
   // ============================================================
-  // HOME PAGE: hero + overlay + sliders + (optional) scroll fade
-  // Only runs if .hero-slider exists
+  // HOME PAGE only (runs if .hero-slider exists)
   // ============================================================
   const heroSlider = document.querySelector(".hero-slider");
   if (heroSlider) {
-    // Fade-in on load
+    // Page-load fade in (logo, hamburger, hero text/arrows)
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
-   // Reveal on scroll (CAREER + anything with .reveal)
-const revealEls = Array.from(document.querySelectorAll(".reveal"));
-if (revealEls.length) {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-  revealEls.forEach((el) => io.observe(el));
-}
-    
-    // -------------------------
+    // ----------------------------------------------------------
+    // Reveal on scroll (CAREER + SUSTAIN + boxes etc.)
+    // Use:
+    //   class="reveal"       -> normal fade up
+    //   class="reveal-drop"  -> drop-in (your boxes)
+    // JS will add class "is-in" when visible
+    // ----------------------------------------------------------
+    const revealTargets = Array.from(
+      document.querySelectorAll(".reveal, .reveal-drop")
+    );
+
+    if (revealTargets.length && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      revealTargets.forEach((el) => io.observe(el));
+    } else {
+      // fallback (old browsers)
+      revealTargets.forEach((el) => el.classList.add("is-in"));
+    }
+
+    // ----------------------------------------------------------
     // Hamburger overlay menu
-    // -------------------------
+    // ----------------------------------------------------------
     const burger = document.querySelector(".hamburger");
     const overlay = document.querySelector(".overlay-nav");
 
@@ -59,9 +70,9 @@ if (revealEls.length) {
       // Close overlay when tapping outside
       document.addEventListener("click", (e) => {
         const target = e.target;
+        const isOpen = overlay.classList.contains("is-open");
         const clickedInsideOverlay = overlay.contains(target);
         const clickedBurger = burger.contains(target);
-        const isOpen = overlay.classList.contains("is-open");
         if (isOpen && !clickedInsideOverlay && !clickedBurger) closeOverlay();
       });
 
@@ -71,9 +82,9 @@ if (revealEls.length) {
       });
     }
 
-    // -------------------------
+    // ----------------------------------------------------------
     // HERO slider (3 slides)
-    // -------------------------
+    // ----------------------------------------------------------
     const slides = Array.from(document.querySelectorAll(".hero-slide"));
     const prevBtn = document.querySelector(".hero-arrow--left");
     const nextBtn = document.querySelector(".hero-arrow--right");
@@ -83,8 +94,6 @@ if (revealEls.length) {
       if (index < 0) index = 0;
 
       const show = (i) => {
-        if (i < 0 || i >= slides.length) return;
-
         slides.forEach((s) => s.classList.remove("is-active"));
         slides[i].classList.add("is-active");
 
@@ -151,9 +160,9 @@ if (revealEls.length) {
       });
     }
 
-    // -------------------------
+    // ----------------------------------------------------------
     // PROJECT slider (8 slides) “book effect”
-    // -------------------------
+    // ----------------------------------------------------------
     const projSlider = document.querySelector(".proj-slider");
     if (projSlider) {
       const cards = Array.from(projSlider.querySelectorAll(".proj-card"));
@@ -166,66 +175,63 @@ if (revealEls.length) {
 
       const total = cards.length;
       if (totalEl) totalEl.textContent = String(total);
-      if (!total) {
-        // nothing to run
-      } else {
-        let current = cards.findIndex((c) => c.classList.contains("is-active"));
-        if (current < 0) current = 0;
 
-        const render = () => {
-          const prevI = (current - 1 + total) % total;
-          const nextI = (current + 1) % total;
+      let current = cards.findIndex((c) => c.classList.contains("is-active"));
+      if (current < 0) current = 0;
 
-          cards.forEach((c, i) => {
-            c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
-            if (i === current) c.classList.add("is-active");
-            else if (i === prevI) c.classList.add("is-prev");
-            else if (i === nextI) c.classList.add("is-next");
-            else c.classList.add("is-hidden");
-          });
+      const render = () => {
+        const prevI = (current - 1 + total) % total;
+        const nextI = (current + 1) % total;
 
-          if (idxEl) idxEl.textContent = String(current + 1);
-        };
+        cards.forEach((c, i) => {
+          c.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+          if (i === current) c.classList.add("is-active");
+          else if (i === prevI) c.classList.add("is-prev");
+          else if (i === nextI) c.classList.add("is-next");
+          else c.classList.add("is-hidden");
+        });
 
-        const goPrev = () => {
-          current = (current - 1 + total) % total;
-          render();
-        };
+        if (idxEl) idxEl.textContent = String(current + 1);
+      };
 
-        const goNext = () => {
-          current = (current + 1) % total;
-          render();
-        };
-
-        if (pPrev) pPrev.addEventListener("click", goPrev);
-        if (pNext) pNext.addEventListener("click", goNext);
-
-        // Swipe on mobile
-        let startX = 0;
-        if (stage) {
-          stage.addEventListener(
-            "touchstart",
-            (e) => (startX = e.touches[0].clientX),
-            { passive: true }
-          );
-          stage.addEventListener(
-            "touchend",
-            (e) => {
-              const endX = e.changedTouches[0].clientX;
-              const diff = endX - startX;
-              if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
-            },
-            { passive: true }
-          );
-        }
-
+      const goPrev = () => {
+        current = (current - 1 + total) % total;
         render();
+      };
+
+      const goNext = () => {
+        current = (current + 1) % total;
+        render();
+      };
+
+      if (pPrev) pPrev.addEventListener("click", goPrev);
+      if (pNext) pNext.addEventListener("click", goNext);
+
+      // Swipe on mobile
+      let startX = 0;
+      if (stage) {
+        stage.addEventListener(
+          "touchstart",
+          (e) => (startX = e.touches[0].clientX),
+          { passive: true }
+        );
+        stage.addEventListener(
+          "touchend",
+          (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (Math.abs(diff) > 50) diff > 0 ? goPrev() : goNext();
+          },
+          { passive: true }
+        );
       }
+
+      render();
     }
 
-    // -------------------------
+    // ----------------------------------------------------------
     // NEWS slider (2 pages) — sliding track
-    // -------------------------
+    // ----------------------------------------------------------
     const newsSlider = document.querySelector(".news-slider");
     if (newsSlider) {
       const track = newsSlider.querySelector(".news-track");
@@ -234,12 +240,13 @@ if (revealEls.length) {
       const nNext = newsSlider.querySelector(".news-next");
 
       if (track && pages.length) {
-        let current = 0;
+        let current = pages.findIndex((p) => p.classList.contains("is-active"));
+        if (current < 0) current = 0;
 
         const render = () => {
-          // only for your CSS hooks (optional)
-          pages.forEach((p, i) => p.classList.toggle("is-active", i === current));
-          // actual slide
+          pages.forEach((p, i) =>
+            p.classList.toggle("is-active", i === current)
+          );
           track.style.transform = `translateX(-${current * 100}%)`;
         };
 
@@ -277,27 +284,6 @@ if (revealEls.length) {
       }
     }
 
-    // -------------------------
-    // Fade-in on scroll (for CAREER + any section)
-    // Add class="reveal" to elements you want to animate
-    // -------------------------
-    const reveals = Array.from(document.querySelectorAll(".reveal"));
-    if (reveals.length && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { root: null, threshold: 0.15 }
-      );
-
-      reveals.forEach((el) => io.observe(el));
-    }
-
     // Home page handled—do not run standard nav toggle below
     return;
   }
@@ -325,29 +311,11 @@ if (revealEls.length) {
       nav.style.zIndex = "100";
     });
 
-    // Close if user clicks outside
     document.addEventListener("click", (e) => {
       const target = e.target;
       const clickedToggle = toggle.contains(target);
       const clickedNav = nav.contains(target);
       if (!clickedToggle && !clickedNav) nav.style.display = "none";
     });
-  }
-
-  // Optional: fade-in on scroll for standard pages too
-  const reveals = Array.from(document.querySelectorAll(".reveal"));
-  if (reveals.length && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { root: null, threshold: 0.15 }
-    );
-    reveals.forEach((el) => io.observe(el));
   }
 });
