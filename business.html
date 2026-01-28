@@ -4,89 +4,181 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Business — DOHWA Engineering Co., Ltd</title>
-  <meta name="description" content="Business areas — architecture, construction engineering, transportation infrastructure, and project delivery." />
+  <meta name="description" content="Business areas — engineering, infrastructure, and project delivery." />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="./">DOHWA Engineering</a>
-      <nav class="nav">
-        <a href="./about.html">About</a>
-        <a href="./business.html">Business</a>
-        <a href="./projects.html">Projects</a>
-        <a href="./news.html">News</a>
-        <a href="./careers.html">Careers</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Open menu" type="button">☰</button>
+
+<body id="top" class="page-business">
+
+<!-- ================= HEADER (SAME AS MAIN/ABOUT) ================= -->
+<header class="hero-header">
+  <div class="hero-header__inner">
+    <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
+
+    <nav class="lang-switch" aria-label="Language switch">
+      <a href="#" data-lang="ko" data-i18n="lang_ko">Korean</a>
+      <a href="#" data-lang="en" data-i18n="lang_en" class="is-active">English</a>
+      <a href="#" data-lang="es" data-i18n="lang_es">Español</a>
+      <a href="#" data-lang="nl" data-i18n="lang_nl">Dutch</a>
+    </nav>
+
+    <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="overlay-nav" aria-hidden="true">
+    <a href="./about.html" data-i18n="nav_about">About</a>
+    <a href="./business.html" data-i18n="nav_business">Business</a>
+    <a href="./projects.html" data-i18n="nav_projects">Projects</a>
+    <a href="./news.html" data-i18n="nav_news">News</a>
+    <a href="./careers.html" data-i18n="nav_careers">Careers</a>
+    <a href="./contact.html" data-i18n="nav_contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= HERO (SAME STYLE AS ABOUT) ================= -->
+  <section class="hero hero--static" aria-label="Business hero">
+    <div class="hero-slide is-active">
+      <!-- ✅ put your business hero image here -->
+      <div class="hero-bg" style="background-image:url('assets/images/business-hero.jpg');"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow" data-i18n="business_kicker">BUSINESS</p>
+        <h1 class="hero-title" data-i18n-html="business_title">Service Areas</h1>
+        <p class="hero-sub" data-i18n="business_sub">
+          Integrated engineering services across the full project lifecycle.
+        </p>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <p class="kicker">Business</p>
-        <h1>Service Areas</h1>
-        <p class="lead">Integrated engineering services across the full project lifecycle.</p>
+  <!-- ================= BUSINESS SECTORS ================= -->
+  <section class="section reveal">
+    <div class="container narrow">
+      <h2 class="section-title" data-i18n="business_overview_h">Core Sectors</h2>
+      <p class="muted" data-i18n="business_overview_p">
+        Our teams deliver planning, design, supervision, and integrated project support across major infrastructure sectors.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="biz1_h">Architecture & Urban Development</h3>
+          <p class="muted" data-i18n="biz1_p">
+            Concept, planning, and design coordination for public and commercial environments.
+          </p>
+          <ul class="list">
+            <li data-i18n="biz1_li1">Master planning & urban design</li>
+            <li data-i18n="biz1_li2">Architectural design coordination</li>
+            <li data-i18n="biz1_li3">Design management & documentation</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="biz2_h">Construction Engineering</h3>
+          <p class="muted" data-i18n="biz2_p">
+            Constructability, supervision, QA/QC, safety, and execution support.
+          </p>
+          <ul class="list">
+            <li data-i18n="biz2_li1">Construction supervision</li>
+            <li data-i18n="biz2_li2">Schedule & risk coordination</li>
+            <li data-i18n="biz2_li3">Quality assurance and reporting</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="biz3_h">Transportation Infrastructure</h3>
+          <p class="muted" data-i18n="biz3_p">
+            Planning and engineering for roads, railways, bridges, tunnels, and transit systems.
+          </p>
+          <ul class="list">
+            <li data-i18n="biz3_li1">Roads & highways</li>
+            <li data-i18n="biz3_li2">Railways & metro</li>
+            <li data-i18n="biz3_li3">Bridges & tunnels</li>
+          </ul>
+        </article>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cards">
-          <article class="card">
-            <h3>Architecture & Urban Development</h3>
-            <p class="muted">Concept, planning, and design coordination for public and commercial environments.</p>
-            <ul class="list">
-              <li>Master planning & urban design</li>
-              <li>Architectural design coordination</li>
-              <li>Design management & documentation</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Construction Engineering</h3>
-            <p class="muted">Constructability, supervision, QA/QC, safety, and execution support.</p>
-            <ul class="list">
-              <li>Construction supervision</li>
-              <li>Schedule & risk coordination</li>
-              <li>Quality assurance and reporting</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Transportation Infrastructure</h3>
-            <p class="muted">Planning and engineering for roads, railways, bridges, tunnels, and transit systems.</p>
-            <ul class="list">
-              <li>Roads & highways</li>
-              <li>Railways & metro</li>
-              <li>Bridges & tunnels</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
-        <h2>Project Delivery</h2>
-        <div class="cards">
-          <article class="card"><h3>Planning & Feasibility</h3><p class="muted">Studies, options analysis, and early-stage planning.</p></article>
-          <article class="card"><h3>Design & Engineering</h3><p class="muted">Multidisciplinary design under global standards.</p></article>
-          <article class="card"><h3>Supervision & PM</h3><p class="muted">Monitoring, reporting, compliance, and project controls.</p></article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> DOHWA Engineering Co., Ltd. All rights reserved.</p>
-      <p class="muted"><a class="link" href="./">Home</a></p>
     </div>
-  </footer>
+  </section>
 
-  <script src="assets/js/main.js"></script>
+  <!-- ================= DELIVERY MODEL ================= -->
+  <section class="section section-alt reveal">
+    <div class="container narrow">
+      <h2 class="section-title" data-i18n="delivery_h">Project Delivery</h2>
+      <p class="muted" data-i18n="delivery_p">
+        From early studies to execution support, we deliver end-to-end project services aligned with global standards.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="delivery_1_h">Planning & Feasibility</h3>
+          <p class="muted" data-i18n="delivery_1_p">Studies, options analysis, and early-stage planning.</p>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="delivery_2_h">Design & Engineering</h3>
+          <p class="muted" data-i18n="delivery_2_p">Multidisciplinary design under recognized standards.</p>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="delivery_3_h">Supervision & PM</h3>
+          <p class="muted" data-i18n="delivery_3_p">Monitoring, reporting, compliance, and project controls.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER (SAME AS ABOUT) ================= -->
+<footer class="dohwa-footer">
+  <div class="container">
+
+    <details class="family-site">
+      <summary data-i18n="family_site">Family Site</summary>
+      <div class="family-panel">
+        <a href="https://www.dohwa.co.kr/?lang=en" target="_blank" rel="noopener" data-i18n="family_official">
+          DOHWA Official
+        </a>
+      </div>
+    </details>
+
+    <div class="footer-row">
+      <div class="footer-brand">DOHWA</div>
+
+      <div class="footer-social">
+        <a href="https://www.facebook.com/dohwaengineering" target="_blank" aria-label="Facebook">f</a>
+        <a href="https://www.linkedin.com/company/dohwa-engineering" target="_blank" aria-label="LinkedIn">in</a>
+        <a href="https://blog.naver.com/dohwa_official" target="_blank" aria-label="Naver Blog">N</a>
+        <a href="https://www.youtube.com/channel/UCUaAuOZcXXooHu7ddO_L03g" target="_blank" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+
+    <div class="footer-address" data-i18n="footer_address">
+      12 Sejong-daero 12-gil, Jung District, Seoul
+    </div>
+
+    <div class="footer-links">
+      <a href="#" data-i18n="privacy">Privacy Policy</a>
+      <span>|</span>
+      <a href="#" data-i18n="ethics">Ethics Hotline</a>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="rights">DOHWA Engineering Co., LTD. All RIGHTS RESERVED</span>
+      <a href="#top" class="footer-top" data-i18n="top">TOP</a>
+    </div>
+
+    <!-- optional year line if you want -->
+    <div class="footer-bottom" style="opacity:.7">
+      © <span id="year"></span>
+    </div>
+
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>
