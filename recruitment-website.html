@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expert Database — DOHWA Engineering</title>
+  <meta name="description" content="DOHWA Engineering Expert Database — submit your profile." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body id="top" class="page-expert">
+
+  <!-- HEADER (same structure as your main pages) -->
+  <header class="hero-header">
+    <div class="hero-header__inner">
+      <a class="hero-logo" href="./" aria-label="DOHWA home">DOHWA</a>
+
+      <nav class="lang-switch" aria-label="Language switch">
+        <a href="#" data-lang="ko" data-i18n="lang_ko">한국어</a>
+        <a href="#" data-lang="en" data-i18n="lang_en" class="is-active">English</a>
+        <a href="#" data-lang="es" data-i18n="lang_es">Español</a>
+        <a href="#" data-lang="nl" data-i18n="lang_nl">Nederlands</a>
+      </nav>
+
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="overlay-nav" aria-hidden="true">
+      <a href="./about.html" data-i18n="nav_about">About</a>
+      <a href="./business.html" data-i18n="nav_business">Business</a>
+      <a href="./projects.html" data-i18n="nav_projects">Projects</a>
+      <a href="./news.html" data-i18n="nav_news">News</a>
+      <a href="./careers.html" data-i18n="nav_careers">Careers</a>
+      <a href="./contact.html" data-i18n="nav_contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero hero--simple">
+      <div class="container narrow">
+        <h1 class="page-title" data-i18n="exp_title">DOHWA Engineering<br>Expert Database</h1>
+
+        <div class="page-intro" data-i18n-html="exp_intro">
+          <p>
+            DOHWA Engineering Co., LTD., is the Number 1 ranking multi-disciplinary engineering consulting firm in South Korea that provides Planning, Feasibility Studies, Design, Analysis, Testing, Supervision, Commissioning, Evaluation/Assessment, and Consulting and Training Services in all areas of Engineering such as the Water Supply and Wastewater Treatment, Water Resources Management, Urban Planning, Road Traffic, Structures, Harbor and Ports, Rail, Environmental Engineering, etc.
+          </p>
+          <p>
+            DOHWA is always looking for highly competitive professionals to be part of our multiple projects worldwide. We are inviting experts from various fields who are interested to be part of DOHWA's worldwide consultancy projects to please fill up this form.
+          </p>
+        </div>
+
+        <div class="form-headline" data-i18n="exp_form_heading">[DOHWA Engineering] Expert Database</div>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="section">
+      <div class="container narrow">
+
+        <!-- NOTE:
+             GitHub Pages cannot send emails by itself.
+             For now we use mailto (works but not perfect).
+             Later I can show you Formspree / Google Forms / backend.
+        -->
+        <form class="expert-form" action="mailto:YOUR_EMAIL_HERE@example.com" method="post" enctype="text/plain">
+
+          <!-- Name -->
+          <div class="field">
+            <label for="fullName"><span data-i18n="f_name">Name</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_name_hint">First Name, Last Name</div>
+            <input id="fullName" name="Name" type="text" placeholder="Your Answer" required />
+          </div>
+
+          <!-- Country -->
+          <div class="field">
+            <label for="country"><span data-i18n="f_country">Country</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_country_hint">Please enter the NAME of the COUNTRY your Citizenship is from</div>
+            <input id="country" name="Country" type="text" placeholder="Your Answer" required />
+          </div>
+
+          <!-- Year of birth -->
+          <div class="field">
+            <label for="yob"><span data-i18n="f_yob">Year of Birth</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_yob_hint">YYYY</div>
+            <input id="yob" name="Year of Birth" type="number" inputmode="numeric" placeholder="Your Answer" min="1900" max="2100" required />
+          </div>
+
+          <!-- Gender -->
+          <div class="field">
+            <label><span data-i18n="f_gender">Gender</span> <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio"><input type="radio" name="Gender" value="Male" required /> <span data-i18n="f_male">Male</span></label>
+              <label class="radio"><input type="radio" name="Gender" value="Female" required /> <span data-i18n="f_female">Female</span></label>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="field">
+            <label for="email"><span data-i18n="f_email">Email Address</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_email_hint">Please enter only one email address</div>
+            <input id="email" name="Email" type="email" placeholder="Your Answer" required />
+          </div>
+
+          <!-- Phone -->
+          <div class="field">
+            <label for="phone"><span data-i18n="f_phone">Contact Number / Whatsapp</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n-html="f_phone_hint">Country Code + Area Code + Number (ex. <b>+82 10 12345678</b>)</div>
+            <input id="phone" name="Contact Number / Whatsapp" type="tel" placeholder="Your Answer" required />
+          </div>
+
+          <!-- Languages -->
+          <div class="field">
+            <label><span data-i18n="f_lang">Are you proficient (Business Level) in any of the following languages?</span> <span class="req">*</span></label>
+            <div class="check-group">
+              <label class="check"><input type="checkbox" name="Languages" value="English" /> <span data-i18n="lang_opt_en">English</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="Spanish" /> <span data-i18n="lang_opt_es">Spanish</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="Russian" /> <span data-i18n="lang_opt_ru">Russian</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="French" /> <span data-i18n="lang_opt_fr">French</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="Arabic" /> <span data-i18n="lang_opt_ar">Arabic</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="Swahili" /> <span data-i18n="lang_opt_sw">Swahili</span></label>
+              <label class="check"><input type="checkbox" name="Languages" value="None" /> <span data-i18n="lang_opt_none">None of the above</span></label>
+            </div>
+          </div>
+
+          <!-- Regions -->
+          <div class="field">
+            <label><span data-i18n="f_region">Which among the following regions do you have any professional experience?</span></label>
+            <div class="check-group">
+              <label class="check"><input type="checkbox" name="Regions" value="Southeast Asia" /> <span data-i18n="reg_sea">Southeast Asia</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="South Asia / SAARC Region" /> <span data-i18n="reg_saarc">South Asia / SAARC Region</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="CIS Region" /> <span data-i18n="reg_cis">CIS Region</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="Africa" /> <span data-i18n="reg_africa">Africa</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="South America" /> <span data-i18n="reg_samerica">South America</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="Middle East" /> <span data-i18n="reg_me">Middle East</span></label>
+              <label class="check"><input type="checkbox" name="Regions" value="None" /> <span data-i18n="reg_none">None of the above</span></label>
+            </div>
+          </div>
+
+          <!-- Degrees (dropdown like screenshot) -->
+          <div class="field">
+            <label for="bachelor"><span data-i18n="f_bachelor">Bachelor's Degree</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_degree_hint">If your degree is not among the options, please choose the most similar.</div>
+            <select id="bachelor" name="Bachelor's Degree" required>
+              <option value="" selected disabled data-i18n="choose">Choose</option>
+              <option>Civil Engineering</option>
+              <option>Architecture</option>
+              <option>Environmental Engineering</option>
+              <option>Structural Engineering</option>
+              <option>Transportation Engineering</option>
+              <option>Water Resources Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Electrical Engineering</option>
+              <option>Project Management</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="master"><span data-i18n="f_master">Master's Degree</span></label>
+            <div class="hint" data-i18n="f_degree_hint">If your degree is not among the options, please choose the most similar.</div>
+            <select id="master" name="Master's Degree">
+              <option value="" selected data-i18n="choose">Choose</option>
+              <option>Civil Engineering</option>
+              <option>Architecture</option>
+              <option>Environmental Engineering</option>
+              <option>Structural Engineering</option>
+              <option>Transportation Engineering</option>
+              <option>Water Resources Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Electrical Engineering</option>
+              <option>Project Management</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="phd"><span data-i18n="f_phd">Doctorate Degree</span></label>
+            <div class="hint" data-i18n="f_degree_hint">If your degree is not among the options, please choose the most similar.</div>
+            <select id="phd" name="Doctorate Degree">
+              <option value="" selected data-i18n="choose">Choose</option>
+              <option>Civil Engineering</option>
+              <option>Architecture</option>
+              <option>Environmental Engineering</option>
+              <option>Structural Engineering</option>
+              <option>Transportation Engineering</option>
+              <option>Water Resources Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Electrical Engineering</option>
+              <option>Project Management</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <!-- Experience -->
+          <div class="field">
+            <label for="exp"><span data-i18n="f_exp">Years of Professional Experience</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_exp_hint">Number of years of experience after obtaining Bachelor's Degree</div>
+            <input id="exp" name="Years of Professional Experience" type="number" inputmode="numeric" placeholder="Your Answer" min="0" max="80" required />
+          </div>
+
+          <div class="field">
+            <label for="iexp"><span data-i18n="f_iexp">Years of International Experience (Outside of Home Country)</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_iexp_hint">Number of years of INTERNATIONAL experience after obtaining Bachelor's Degree</div>
+            <input id="iexp" name="Years of International Experience" type="number" inputmode="numeric" placeholder="Your Answer" min="0" max="80" required />
+          </div>
+
+          <!-- Pay -->
+          <div class="field">
+            <label for="monthly"><span data-i18n="f_monthly">How much is your expected MONTHLY remuneration (USD)?</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_monthly_hint">Please note that the remuneration should exclude per diem and include all relevant taxes</div>
+            <input id="monthly" name="Expected Monthly Remuneration (USD)" type="number" inputmode="decimal" placeholder="Your Answer" min="0" required />
+          </div>
+
+          <div class="field">
+            <label for="perdiem"><span data-i18n="f_perdiem">How much is your expected DAILY per diem (USD)?</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_perdiem_hint">Please note that per diem should include meals, accommodation and local transportation</div>
+            <input id="perdiem" name="Expected Daily Per Diem (USD)" type="number" inputmode="decimal" placeholder="Your Answer" min="0" required />
+          </div>
+
+          <!-- 3 choices -->
+          <div class="field">
+            <label for="pos1"><span data-i18n="f_pos1">First Choice (1 of 3)</span> <span class="req">*</span></label>
+            <select id="pos1" name="Position Choice 1" required>
+              <option value="" selected disabled data-i18n="choose">Choose</option>
+              <option>Project Manager</option>
+              <option>Civil Engineer</option>
+              <option>Water / Wastewater Engineer</option>
+              <option>Transportation Engineer</option>
+              <option>Structural Engineer</option>
+              <option>Environmental Engineer</option>
+              <option>Architect / Urban Planner</option>
+              <option>Quantity Surveyor</option>
+              <option>HSE / Safety</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="pos2"><span data-i18n="f_pos2">First Choice (2 of 3)</span> <span class="req">*</span></label>
+            <select id="pos2" name="Position Choice 2" required>
+              <option value="" selected disabled data-i18n="choose">Choose</option>
+              <option>Project Manager</option>
+              <option>Civil Engineer</option>
+              <option>Water / Wastewater Engineer</option>
+              <option>Transportation Engineer</option>
+              <option>Structural Engineer</option>
+              <option>Environmental Engineer</option>
+              <option>Architect / Urban Planner</option>
+              <option>Quantity Surveyor</option>
+              <option>HSE / Safety</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="pos3"><span data-i18n="f_pos3">First Choice (3 of 3)</span> <span class="req">*</span></label>
+            <select id="pos3" name="Position Choice 3" required>
+              <option value="" selected disabled data-i18n="choose">Choose</option>
+              <option>Project Manager</option>
+              <option>Civil Engineer</option>
+              <option>Water / Wastewater Engineer</option>
+              <option>Transportation Engineer</option>
+              <option>Structural Engineer</option>
+              <option>Environmental Engineer</option>
+              <option>Architect / Urban Planner</option>
+              <option>Quantity Surveyor</option>
+              <option>HSE / Safety</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <!-- Uploads (looks like screenshot) -->
+          <div class="field">
+            <label for="cv"><span data-i18n="f_cv">Please upload a copy of your most updated CV.</span> <span class="req">*</span></label>
+            <div class="hint" data-i18n="f_cv_hint">Please upload your CV in PDF or Word File</div>
+            <input id="cv" name="CV Upload" type="file" accept=".pdf,.doc,.docx" required />
+          </div>
+
+          <div class="field">
+            <label for="certs"><span data-i18n="f_certs">Please upload your educational & professional certificates</span></label>
+            <div class="hint" data-i18n="f_optional">Optional</div>
+            <input id="certs" name="Certificates Upload" type="file" multiple />
+          </div>
+
+          <!-- Video (like screenshot section) -->
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/QD3qF79Pgco"
+              title="DOHWA Engineering PR Film"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+
+          <!-- Submit -->
+          <div class="actions">
+            <button class="btn btn-primary" type="submit" data-i18n="submit">Submit</button>
+            <p class="fineprint" data-i18n="submit_note">
+              After you click submit, your email app may open to send the form.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (same idea as your main) -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        © <span id="year"></span> DOHWA Engineering Co., LTD. All RIGHTS RESERVED
+      </p>
+      <p class="muted">
+        <a class="link" href="#top" data-i18n="top">TOP</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
